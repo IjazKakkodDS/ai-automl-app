@@ -26,3 +26,6 @@ Thumbs.db
 
 # Node
 node_modules/
+
+# Ignore large data files
+processed_data/*.csv
