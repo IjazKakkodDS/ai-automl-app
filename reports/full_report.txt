@@ -1,0 +1,438 @@
+--- EDA Report: eda_report.csv ---
+,Sales,Year,Month,DayOfWeek
+count,12.0,12.0,12.0,12.0
+mean,-5.527985476779426e-16,2024.0,6.5,2.8333333333333335
+std,1.044465935734187,0.0,3.605551275463989,2.2495790852081776
+min,-1.3081202540744992,2024.0,1.0,0.0
+25%,-0.5697860443549474,2024.0,3.75,0.75
+50%,-0.20273815364476838,2024.0,6.5,3.0
+75%,0.5063509008103464,2024.0,9.25,4.25
+max,2.374226252265033,2024.0,12.0,6.0
+
+
+--- EDA Report: eda_report.txt ---
+### Exploratory Data Analysis Summary
+
+This overview highlights the dataset’s size, structure, and key characteristics.
+
+For a deeper dive, refer to the interactive charts in the UI.
+
+**Key Points**:
+- Numeric & categorical features identified
+- Missing value patterns and distributions summarized
+- Skewness & kurtosis computed for numeric features
+
+
+--- EDA Report: eda_report_0a3bbbed-aac5-44be-8383-82fea9a6d39b.txt ---
+### Exploratory Data Analysis Summary
+
+Overview of dataset size, structure, and key characteristics.
+Interactive charts are available in the UI for a deeper dive.
+
+Key Points:
+- Identified numeric and categorical features
+- Summarized missing value patterns and distributions
+- Computed skewness and kurtosis for numeric features
+
+
+--- EDA Report: eda_report_58e51755-3c1e-4a76-8e7c-e63d9469553d.txt ---
+### Exploratory Data Analysis Summary
+
+This overview highlights the dataset’s size, structure, and key characteristics.
+
+For a deeper dive, refer to the interactive charts in the UI.
+
+**Key Points**:
+- Numeric & categorical features identified
+- Missing value patterns and distributions summarized
+- Skewness & kurtosis computed for numeric features
+
+
+--- EDA Report: eda_report_97f8a45d-4746-4597-add3-7d6f73821344.txt ---
+### Exploratory Data Analysis Summary
+
+Overview of dataset size, structure, and key characteristics.
+Interactive charts are available in the UI for a deeper dive.
+
+Key Points:
+- Identified numeric and categorical features
+- Summarized missing value patterns and distributions
+- Computed skewness and kurtosis for numeric features
+
+
+--- EDA Report: eda_report_b7bab1f9-0a36-49d5-ac80-adddfabcc570.txt ---
+### Exploratory Data Analysis Summary
+
+This overview highlights the dataset’s size, structure, and key characteristics.
+
+For a deeper dive, refer to the interactive charts in the UI.
+
+**Key Points**:
+- Numeric & categorical features identified
+- Missing value patterns and distributions summarized
+- Skewness & kurtosis computed for numeric features
+
+
+--- EDA Report: eda_report_d86a190a-2ad4-45a6-8c42-a669c10c869f.txt ---
+### Exploratory Data Analysis Summary
+
+Overview of dataset size, structure, and key characteristics.
+Interactive charts are available in the UI for a deeper dive.
+
+Key Points:
+- Identified numeric and categorical features
+- Summarized missing value patterns and distributions
+- Computed skewness and kurtosis for numeric features
+
+
+--- EDA Report: eda_report_f498d2fe-7efa-4129-a41d-2e2fb9e51adc.txt ---
+### Exploratory Data Analysis Summary
+
+This overview highlights the dataset’s size, structure, and key characteristics.
+
+For a deeper dive, refer to the interactive charts in the UI.
+
+**Key Points**:
+- Numeric & categorical features identified
+- Missing value patterns and distributions summarized
+- Skewness & kurtosis computed for numeric features
+
+
+--- Training Report: training_results.csv ---
+Model,R2 Score,Mean Absolute Error,Mean Squared Error
+Linear Regression,-0.5240624107819891,1.8452883010430774,3.4593416357777094
+Decision Tree,-0.938466772529921,2.0773949903781648,4.399963392800738
+Random Forest,-0.7536871686391506,1.9550965546143617,3.9805476440363052
+XGBoost,-0.9850682293385,2.0356051477883796,4.50574013703728
+
+
+--- Training Report: training_results_3c4b5017-27c9-4478-af1b-e0fa05fba5ca.csv ---
+Model,Training_Time_sec,RMSE,R2,MAE,CV_R2_Avg
+LinearRegression,0.002,0.7321,0.4927,0.5453,0.3567
+RandomForestRegressor,0.084,0.7704,0.4382,0.583,0.3118
+GradientBoostingRegressor,0.058,0.8287,0.35,0.6123,0.3282
+
+
+--- Training Report: training_results_516cceef-f0b9-48ea-ac7f-23808d8e557c.csv ---
+Model,Training_Time_sec,RMSE,R2,MAE,CV_R2_Avg
+LinearRegression,0.004,0.7321,0.4927,0.5453,0.3567
+RandomForestRegressor,0.074,0.7704,0.4382,0.583,0.3118
+GradientBoostingRegressor,0.055,0.8287,0.35,0.6123,0.3282
+
+
+--- Training Report: training_results_6a037e9d-9e9e-4fde-a33d-cc3b2c356f25.csv ---
+Model,Training_Time_sec,RMSE,R2,MAE,CV_R2_Avg
+LinearRegression,0.002,0.7321,0.4927,0.5453,0.3567
+RandomForestRegressor,0.082,0.7704,0.4382,0.583,0.3118
+GradientBoostingRegressor,0.088,0.8287,0.35,0.6123,0.3282
+
+
+--- Training Report: training_results_70e5e44c-23cb-452a-b97f-840e61211652.csv ---
+Model,Training_Time_sec,RMSE,R2,MAE,CV_R2_Avg
+LinearRegression,0.012,0.7321,0.4927,0.5453,0.3567
+RandomForestRegressor,0.082,0.7704,0.4382,0.583,0.3118
+GradientBoostingRegressor,0.055,0.8287,0.35,0.6123,0.3282
+
+
+--- Training Report: training_results_8159123f-b910-4455-9e4e-978f59263269.csv ---
+Model,Training_Time_sec,RMSE,R2,MAE,CV_R2_Avg
+LinearRegression,0.001,0.7321,0.4927,0.5453,0.3567
+RandomForestRegressor,0.075,0.7704,0.4382,0.583,0.3118
+GradientBoostingRegressor,0.056,0.8287,0.35,0.6123,0.3282
+
+
+--- Training Report: training_results_ef56fd86-729f-499b-a30b-92cac881ced0.csv ---
+Model,Training_Time_sec,RMSE,R2,MAE,CV_R2_Avg
+LinearRegression,0.001,0.7321,0.4927,0.5453,0.3567
+RandomForestRegressor,0.097,0.7704,0.4382,0.583,0.3118
+GradientBoostingRegressor,0.056,0.8287,0.35,0.6123,0.3282
+
+
+--- Training Report: training_results_f687b708-6898-4f89-a6ec-049994dcfab4.csv ---
+Model,Training_Time_sec,RMSE,R2,MAE,CV_R2_Avg
+LinearRegression,0.011,0.7321,0.4927,0.5453,0.3567
+RandomForestRegressor,0.076,0.7704,0.4382,0.583,0.3118
+GradientBoostingRegressor,0.056,0.8287,0.35,0.6123,0.3282
+
+
+--- Forecasting Log ---
+
+🔹 Model: ARIMA
+   Forecast Horizon: 30 days
+
+🔹 Model: Prophet
+   Forecast Horizon: 30 days
+
+🔹 Model: ARIMA
+   Forecast Horizon: 30 days
+
+🔹 Model: Prophet
+   Forecast Horizon: 30 days
+
+🔹 Model: ARIMA
+   Forecast Horizon: 30 days
+
+🔹 Model: Prophet
+   Forecast Horizon: 30 days
+
+🔹 Model: ARIMA
+   Forecast Horizon: 30 days
+
+🔹 Model: Prophet
+   Forecast Horizon: 30 days
+
+🔹 Model: ARIMA
+   Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 100 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 15 days
+
+Model: ARIMA
+Forecast Horizon: 15 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 5 days
+
+Model: ARIMA
+Forecast Horizon: 5 days
+
+Model: Prophet
+Forecast Horizon: 5 days
+
+Model: ARIMA
+Forecast Horizon: 5 days
+
+Model: Prophet
+Forecast Horizon: 5 days
+
+Model: ARIMA
+Forecast Horizon: 5 days
+
+Model: Prophet
+Forecast Horizon: 5 days
+
+Model: ARIMA
+Forecast Horizon: 5 days
+
+Model: Prophet
+Forecast Horizon: 5 days
+
+Model: ARIMA
+Forecast Horizon: 5 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 5 days
+
+Model: ARIMA
+Forecast Horizon: 5 days
+
+Model: Prophet
+Forecast Horizon: 5 days
+
+Model: ARIMA
+Forecast Horizon: 5 days
+
+Model: ARIMA
+Forecast Horizon: 60 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+
+--- AI Insights ---
+1) General Insights:
+   - The sales data spans over 12 observations for each feature (Sales, Year, Month, DayOfWeek).
+   - There seems to be no significant trend in the mean of the Sales variable (approximately zero), indicating that the average sales value remains relatively consistent.
+   - However, there is a considerable standard deviation in the sales data, suggesting high variability in sales values.
+   - The minimum and maximum sales values are within a reasonable range, with no outliers observed.
+   - The median sales value (50%) is approximately 3.0, and the 25th and 75th percentiles are 0.75 and 4.25, respectively, indicating that sales values tend to cluster around these numbers but have a wider spread.
+
+2) Model Performance:
+   - The Linear Regression model had an R² score of -0.52, suggesting poor fitting to the data. The Mean Absolute Error (MAE) was 1.84 and the Mean Squared Error (MSE) was 3.46, indicating that the linear regression model struggles to predict sales accurately.
+   - Decision Tree performance was slightly better with an R² score of -0.94 but still poor. The MAE was 2.08 and MSE was 4.4, showing the decision tree model also needs improvement in its ability to predict sales.
+   - Random Forest had a slightly better R² score of -0.75, indicating moderately poor fitting to the data. The MAE was 1.96, and MSE was 3.98, demonstrating that the random forest model still requires adjustments to improve its prediction accuracy.
+   - XGBoost had the best performance among all models with an R² score of -0.98, indicating very poor fitting to the data. However, it had a slightly lower MAE (2.04) and MSE (4.51) compared to the other models, suggesting that XGBoost may be more effective at predicting sales but still requires improvements.
+
+3) Recommendations:
+   - It is recommended to collect additional data points or features that might help improve model performance, such as historical sales trends, promotions, or seasonal factors.
+   - Experiment with different models, tuning parameters, and feature engineering techniques to find a more accurate prediction model for the sales data.
+   - Perform cross-validation when training new models to ensure that overfitting is minimized.
+   - Consider combining multiple models using ensemble methods like stacking or boosting to improve overall performance.
+
+--- RAG Summary ---
+No RAG summary available. Please run a RAG query for document retrieval.
+

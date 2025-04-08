@@ -1,0 +1,28 @@
+Title: Scalable Signature Kernel Computations for Long Time Series via Local Neumann Series Expansions
+
+Abstract:
+The signature kernel is a recent state-of-the-art tool for analyzing
+high-dimensional sequential data, valued for its theoretical guarantees and
+strong empirical performance. In this paper, we present a novel method for
+efficiently computing the signature kernel of long, high-dimensional time
+series via dynamically truncated recursive local power series expansions.
+Building on the characterization of the signature kernel as the solution of a
+Goursat PDE, our approach employs tilewise Neumann-series expansions to derive
+rapidly converging power series approximations of the signature kernel that are
+locally defined on subdomains and propagated iteratively across the entire
+domain of the Goursat solution by exploiting the geometry of the time series.
+Algorithmically, this involves solving a system of interdependent local Goursat
+PDEs by recursively propagating boundary conditions along a directed graph via
+topological ordering, with dynamic truncation adaptively terminating each local
+power series expansion when coefficients fall below machine precision, striking
+an effective balance between computational cost and accuracy. This method
+achieves substantial performance improvements over state-of-the-art approaches
+for computing the signature kernel, providing (a) adjustable and superior
+accuracy, even for time series with very high roughness; (b) drastically
+reduced memory requirements; and (c) scalability to efficiently handle very
+long time series (e.g., with up to half a million points or more) on a single
+GPU. These advantages make our method particularly well-suited for
+rough-path-assisted machine learning, financial modeling, and signal processing
+applications that involve very long and highly volatile data.
+
+URL: http://arxiv.org/abs/2502.20392v1

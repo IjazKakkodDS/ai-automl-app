@@ -1,0 +1,258 @@
+
+🔹 Model: ARIMA
+   Forecast Horizon: 30 days
+
+🔹 Model: Prophet
+   Forecast Horizon: 30 days
+
+🔹 Model: ARIMA
+   Forecast Horizon: 30 days
+
+🔹 Model: Prophet
+   Forecast Horizon: 30 days
+
+🔹 Model: ARIMA
+   Forecast Horizon: 30 days
+
+🔹 Model: Prophet
+   Forecast Horizon: 30 days
+
+🔹 Model: ARIMA
+   Forecast Horizon: 30 days
+
+🔹 Model: Prophet
+   Forecast Horizon: 30 days
+
+🔹 Model: ARIMA
+   Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 100 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 15 days
+
+Model: ARIMA
+Forecast Horizon: 15 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 5 days
+
+Model: ARIMA
+Forecast Horizon: 5 days
+
+Model: Prophet
+Forecast Horizon: 5 days
+
+Model: ARIMA
+Forecast Horizon: 5 days
+
+Model: Prophet
+Forecast Horizon: 5 days
+
+Model: ARIMA
+Forecast Horizon: 5 days
+
+Model: Prophet
+Forecast Horizon: 5 days
+
+Model: ARIMA
+Forecast Horizon: 5 days
+
+Model: Prophet
+Forecast Horizon: 5 days
+
+Model: ARIMA
+Forecast Horizon: 5 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 5 days
+
+Model: ARIMA
+Forecast Horizon: 5 days
+
+Model: Prophet
+Forecast Horizon: 5 days
+
+Model: ARIMA
+Forecast Horizon: 5 days
+
+Model: ARIMA
+Forecast Horizon: 60 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: Prophet
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days
+
+Model: ARIMA
+Forecast Horizon: 30 days

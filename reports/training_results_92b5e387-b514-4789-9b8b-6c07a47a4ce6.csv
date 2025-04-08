@@ -1,0 +1,5 @@
+Model,Training_Time_sec,Accuracy,F1,Precision,Recall,CV_F1_Avg
+LogisticRegression,0.04,0.8197,0.8148,0.813,0.8197,0.7954
+RandomForestClassifier,0.24,0.8077,0.7973,0.7971,0.8077,0.795
+GradientBoostingClassifier,0.225,0.8112,0.8024,0.8015,0.8112,0.7932
+SVC,2.786,0.8112,0.8012,0.8011,0.8112,0.7883

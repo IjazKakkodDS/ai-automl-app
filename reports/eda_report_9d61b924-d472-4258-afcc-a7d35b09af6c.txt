@@ -1,0 +1,9 @@
+### Exploratory Data Analysis Summary
+
+Overview of dataset size, structure, and key characteristics.
+Interactive charts are available in the UI for a deeper dive.
+
+Key Points:
+- Identified numeric and categorical features
+- Summarized missing value patterns and distributions
+- Computed skewness and kurtosis for numeric features

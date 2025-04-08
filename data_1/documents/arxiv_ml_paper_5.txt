@@ -1,0 +1,22 @@
+Title: Point Policy: Unifying Observations and Actions with Key Points for Robot Manipulation
+
+Abstract:
+Building robotic agents capable of operating across diverse environments and
+object types remains a significant challenge, often requiring extensive data
+collection. This is particularly restrictive in robotics, where each data point
+must be physically executed in the real world. Consequently, there is a
+critical need for alternative data sources for robotics and frameworks that
+enable learning from such data. In this work, we present Point Policy, a new
+method for learning robot policies exclusively from offline human demonstration
+videos and without any teleoperation data. Point Policy leverages
+state-of-the-art vision models and policy architectures to translate human hand
+poses into robot poses while capturing object states through semantically
+meaningful key points. This approach yields a morphology-agnostic
+representation that facilitates effective policy learning. Our experiments on 8
+real-world tasks demonstrate an overall 75% absolute improvement over prior
+works when evaluated in identical settings as training. Further, Point Policy
+exhibits a 74% gain across tasks for novel object instances and is robust to
+significant background clutter. Videos of the robot are best viewed at
+https://point-policy.github.io/.
+
+URL: http://arxiv.org/abs/2502.20391v1

@@ -1,0 +1,52 @@
+
+🔹 Model: Linear Regression
+   R2 Score: -0.5241
+   Mean Absolute Error: 1.8453
+   Mean Squared Error: 3.4593
+
+🔹 Model: Decision Tree
+   R2 Score: -1.0720
+   Mean Absolute Error: 2.0751
+   Mean Squared Error: 4.7030
+
+🔹 Model: Random Forest
+   R2 Score: -0.7584
+   Mean Absolute Error: 1.9403
+   Mean Squared Error: 3.9913
+
+🔹 Model: XGBoost
+   R2 Score: -0.9851
+   Mean Absolute Error: 2.0356
+   Mean Squared Error: 4.5057
+
+🔹 Model: Linear Regression
+   R2 Score: -0.5241
+
+🔹 Model: Decision Tree
+   R2 Score: -1.0720
+
+🔹 Model: Random Forest
+   R2 Score: -0.7098
+
+🔹 Model: XGBoost
+   R2 Score: -0.9851
+
+🔹 Model: Linear Regression
+   R2 Score: -0.5241
+   Mean Absolute Error: 1.8453
+   Mean Squared Error: 3.4593
+
+🔹 Model: Decision Tree
+   R2 Score: -0.9385
+   Mean Absolute Error: 2.0774
+   Mean Squared Error: 4.4000
+
+🔹 Model: Random Forest
+   R2 Score: -0.7537
+   Mean Absolute Error: 1.9551
+   Mean Squared Error: 3.9805
+
+🔹 Model: XGBoost
+   R2 Score: -0.9851
+   Mean Absolute Error: 2.0356
+   Mean Squared Error: 4.5057
