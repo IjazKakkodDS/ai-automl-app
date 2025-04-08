@@ -1,31 +1,37 @@
-# Python
+# ────────────── Python ──────────────
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
 *.pyd
-.Python
-env/
-venv/
-ENV/
-.venv/
-*.egg-info/
-dist/
-build/
-*.egg
 *.log
 
-# VS Code
+# Virtual Environments
+env/
+venv/
+.venv/
+ENV/
+.Python
+
+# Python Packaging
+*.egg-info/
+*.egg
+dist/
+build/
+
+# ────────────── Jupyter ──────────────
+.ipynb_checkpoints/
+
+# ────────────── VS Code ──────────────
 .vscode/
 
-# OS
+# ────────────── Operating System Files ──────────────
 .DS_Store
 Thumbs.db
 
-# Jupyter
-.ipynb_checkpoints/
-
-# Node
+# ────────────── Node / Frontend ──────────────
 node_modules/
 
-# Ignore large data files
+# ────────────── Large Data / Private Files ──────────────
 processed_data/*.csv
+feature_engineered_data/*.csv
+original_data/*.csv
