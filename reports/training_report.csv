@@ -1,0 +1,5 @@
+Model,Training Time (sec),R2
+Linear Regression,0.0,-0.5241
+Decision Tree,0.0,-0.8736
+Random Forest,0.06,-0.7068
+XGBoost,0.04,-0.9851

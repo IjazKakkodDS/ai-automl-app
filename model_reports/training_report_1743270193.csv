@@ -1,0 +1,3 @@
+Model,Training_Time_sec,RMSE,R2,MAE
+LinearRegression,0.001,1.0032,-0.0488,0.8497
+RandomForestRegressor,0.031,1.2138,-0.5354,0.9743

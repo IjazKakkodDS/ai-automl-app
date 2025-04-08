@@ -1,0 +1,108 @@
+/* Insights.module.css - Refined Dark Next-Gen Theme */
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  /* Slight gradient for a more refined look */
+  background: linear-gradient(160deg, #252525 0%, #1e1e1e 100%);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  font-family: 'Roboto', sans-serif;
+}
+.title {
+  font-size: 2.6rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #64ffda;
+  font-weight: 700;
+}
+.description {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #c0c0c0;
+}
+.toggleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+.form {
+  margin-bottom: 2rem;
+}
+.inputGroup {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+.textarea {
+  padding: 1rem;
+  border: 1px solid #333333;
+  border-radius: 6px;
+  font-size: 1rem;
+  resize: vertical;
+  background-color: #2e2e2e;
+  color: #ffffff;
+}
+.select {
+  padding: 0.8rem;
+  border: 1px solid #333333;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #2e2e2e;
+  color: #ffffff;
+}
+.button {
+  background-color: #64ffda;
+  color: #1e1e1e;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin: 0 auto;
+  display: block;
+}
+.button:hover {
+  background-color: #52d7b8;
+  transform: translateY(-2px);
+}
+.error {
+  color: #ff6b6b;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 1rem;
+}
+.results {
+  background-color: #2e2e2e;
+  padding: 1.5rem;
+  border-radius: 6px;
+  margin-top: 2rem;
+}
+.resultsTitle {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #64ffda;
+}
+.resultsText {
+  background-color: #1e1e1e;
+  padding: 1rem;
+  border: 1px solid #333333;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  color: #ffffff;
+  overflow-x: auto;
+  white-space: pre-wrap;
+}

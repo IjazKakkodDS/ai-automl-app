@@ -1,0 +1,97 @@
+/* styles/Reports.module.css */
+
+.container {
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  /* Using the same minty color as previous pages */
+  color: #b8f9d3;
+}
+
+.status {
+  margin-top: 1rem;
+  color: #f3f3f3;
+  font-weight: bold;
+}
+
+.buttonGroup {
+  margin-top: 1rem;
+}
+
+.button {
+  background-color: #2bcf94;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.button:disabled {
+  background-color: #888;
+  cursor: not-allowed;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #25b882;
+}
+
+/* Preview container now matches the other pages' dark backgrounds */
+.previewContainer {
+  margin-top: 2rem;
+  background-color: #121212;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* Tab bar styling */
+.tabBar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Tab button styling with a darker base to match previous UI elements */
+.tabButton {
+  background-color: #1f1f1f;
+  border: none;
+  color: #ccc;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tabButton:hover {
+  background-color: #2a2a2a;
+}
+
+/* Active tab uses the primary button color */
+.activeTab {
+  background-color: #2bcf94;
+  color: #000;
+  font-weight: bold;
+}
+
+/* Tab content area with a slightly lighter dark shade */
+.tabContent {
+  background-color: #1a1a1a;
+  padding: 1rem;
+  border-radius: 6px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.reportText {
+  white-space: pre-wrap;
+  color: #fff;
+}
+
+.statsPanel {
+  color: #fff;
+}

@@ -1,0 +1,95 @@
+/* Rag.module.css - Refined Dark Next-Gen Theme */
+.container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: linear-gradient(160deg, #252525 0%, #1e1e1e 100%);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  font-family: 'Roboto', sans-serif;
+}
+.title {
+  font-size: 2.6rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #64ffda;
+  font-weight: 700;
+}
+.description {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #c0c0c0;
+}
+.form {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.inputGroup {
+  width: 100%;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.label {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+.input {
+  padding: 0.8rem;
+  border: 1px solid #333333;
+  border-radius: 6px;
+  font-size: 1rem;
+  width: 100%;
+  background-color: #2e2e2e;
+  color: #ffffff;
+}
+.button {
+  background-color: #64ffda;
+  color: #1e1e1e;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1rem;
+}
+.button:hover {
+  background-color: #52d7b8;
+  transform: translateY(-2px);
+}
+.error {
+  color: #ff6b6b;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 1rem;
+}
+.results {
+  margin-top: 2rem;
+  background-color: #2e2e2e;
+  padding: 1.5rem;
+  border-radius: 6px;
+}
+.resultsTitle {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #64ffda;
+}
+.resultsText {
+  font-size: 0.95rem;
+  color: #ffffff;
+  white-space: pre-wrap;
+  background-color: #1e1e1e;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #333333;
+  margin-top: 0.5rem;
+  overflow-x: auto;
+}

@@ -1,0 +1,4 @@
+Model,Training_Time_sec,RMSE,R2,MAE,CV_R2_Avg
+LinearRegression,0.014,0.035,0.9988,0.0263,0.9988
+RandomForestRegressor,0.665,0.0409,0.9983,0.0298,0.998
+GradientBoostingRegressor,0.323,0.0379,0.9986,0.0288,0.9986

@@ -1,0 +1,15 @@
+1. Heatmap:
+   - Strong correlations suggest that certain features may have a significant impact on others. For instance, if there's a strong correlation between 'Sales' and 'Advertising Budget', it could indicate that increasing the advertising budget may lead to an increase in sales.
+   - Next steps would be to investigate these strongly correlated pairs further by performing regression analysis or conducting additional statistical tests to confirm the relationship.
+
+2. Histogram of 'Sales':
+   - The histogram and KDE curve suggest that the distribution of 'Sales' is skewed towards higher values, indicating a high variability in sales figures.
+   - Next steps could include analyzing the outliers (high sales values) to understand their causes and impact on overall sales performance. Also, it would be interesting to investigate if there are any trends or patterns associated with these high-value sales.
+
+3. Histogram of 'Year', 'Month', 'DayOfWeek':
+   - The histograms and KDE curves for 'Year', 'Month', and 'DayOfWeek' offer insights into the temporal distribution of the data. For example, if there are seasonal trends in sales, it would be evident from the distributions of these variables.
+   - Next steps could involve trend analysis over time (time-series analysis) or seasonality analysis to identify any patterns that might affect sales performance.
+
+4. Scatterplot:
+   - The linear pattern between numerical features suggests correlation, which can help in identifying cause-effect relationships or predictive variables. For instance, if there's a strong linear relationship between 'Temperature' and 'Sales', it may indicate that warmer temperatures could lead to increased sales.
+   - Next steps would involve performing regression analysis on these correlated pairs to quantify the relationship and make predictions about future sales based on temperature or other factors.
