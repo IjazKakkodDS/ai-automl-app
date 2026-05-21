@@ -27,8 +27,8 @@ from backend.app.api import (
 from backend.app.api import reset_routes
 
 app = FastAPI(
-    title="AI AutoML Backend",
-    description="Serious RAG + Agentic AI pipeline for enterprise ML workflows.",
+    title="AI AutoML Intelligence Platform API",
+    description="FAISS RAG and agentic ML pipeline for end-to-end machine learning workflows.",
     version="1.0.0"
 )
 

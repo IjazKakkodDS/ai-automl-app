@@ -4,13 +4,12 @@
 ![ML Pipeline](https://img.shields.io/badge/ML--Pipeline-scikit--learn%20%7C%20statsmodels%20%7C%20Prophet%20%7C%20FAISS%20%7C%20SentenceTransformers-orange)
 ![Status](https://img.shields.io/badge/Status-Deployment--Ready-brightgreen)
 ![Docker](https://img.shields.io/badge/Container-Docker-blue?logo=docker)
-![GitHub Actions](https://img.shields.io/badge/CI--CD-GitHub%20Actions-blue?logo=githubactions)
 ![AWS](https://img.shields.io/badge/Cloud-AWS-orange?logo=amazon-aws)
 
-# AI-Powered AutoML Application
+# AI AutoML Intelligence Platform
 
-**LangChain RAG • Agentic AI • Full-Stack ML Application**
-Built & Deployed with CI/CD | FastAPI + Next.js + AWS
+**FAISS RAG • Agentic AI • Full-Stack ML Platform**
+FastAPI + Next.js + Docker | Python 3.12+
 
 ---
 
@@ -35,13 +34,13 @@ Built & Deployed with CI/CD | FastAPI + Next.js + AWS
 
 ## Overview
 
-This project is a production-grade **AI AutoML Application** that integrates the complete machine learning lifecycle into a unified FastAPI-powered pipeline. It automates **data preprocessing**, **EDA**, **feature engineering**, **model training**, **time-series forecasting**, and **automated reporting**.
+This project is a production-grade **AI AutoML Intelligence Platform** that integrates the complete machine learning lifecycle into a unified FastAPI-powered pipeline. It automates **data preprocessing**, **EDA**, **feature engineering**, **model training**, **time-series forecasting**, and **automated reporting**.
 
 It also includes:
 
-- RAG-based **document QA** using LangChain & ChromaDB
+- RAG-based **document QA** using FAISS vector search, SentenceTransformer embeddings, and Ollama local LLM summarization
 - AI **agent collaboration** for smart automation (EDA, modeling, feature engineering)
-- Seamless deployment via **Docker** and **AWS Elastic Beanstalk**
+- Containerized deployment via **Docker**
 
 **Goal**: Provide a scalable, reproducible, and easily extensible framework for end-to-end machine learning in a single application.
 
@@ -68,8 +67,7 @@ Traditional ML workflows often involve scattered scripts and notebooks, leading 
 - ✅ **Automated Data-to-Report Pipeline**Transform raw data into actionable insights and final stakeholder reports.
 - 📊 **AI-Powered EDA**Generate dynamic descriptive stats, correlations, and visuals, with AI-generated narratives for deeper insights.
 - 🔄 **Time-Series Forecasting**Tools like Prophet, ARIMA, and LSTM for advanced, modular forecasting.
-- ✨ **LangChain RAG**Retrieve ML insights from academic literature via a custom doc-scraping workflow.
-- 🚀 **CI/CD with GitHub Actions**Seamlessly build, test, and deploy changes to AWS or other container platforms.
+- ✨ **RAG-Based Knowledge Retrieval**Retrieve ML insights from academic literature via FAISS vector search, SentenceTransformer embeddings, and Ollama local LLM summarization.
 - ✉ **Automated Reporting**Produce PDF/HTML reports using headless Chrome or similar solutions.
 - 💡 **Extensible Architecture**
   Swap or customize models and modules (e.g., XGBoost, RandomForest) with minimal code changes.
@@ -79,7 +77,7 @@ Traditional ML workflows often involve scattered scripts and notebooks, leading 
 ## Project Highlights
 
 1. **Unified ML-to-Report Pipeline**From raw data ingestion to final PDF/HTML reports, all in one codebase.
-2. **Agentic Intelligence**Built on LangChain with specialized “agents” for advanced EDA, feature engineering, etc.
+2. **Agentic Intelligence**Orchestrated specialist agents for EDA, feature engineering, model training, and AI insights -- coordinated by an orchestrator decision loop.
 3. **Production-Ready Docker Deployment**Containerize, build, and ship to AWS Elastic Beanstalk for scalable hosting.
 4. **Scalable Forecasting**Modular time-series forecasting, comparing models like Prophet and ARIMA with minimal setup.
 5. **Smart Automation**
@@ -133,7 +131,7 @@ Traditional ML workflows often involve scattered scripts and notebooks, leading 
 
 - **Reproducibility**Deterministic seeds, thorough logging, version-controlled artifacts.
 - **Modular Architecture**Each pipeline step (preprocessing, modeling, reporting) is isolated and easy to replace or extend.
-- **CI/CD Integration**GitHub Actions automate testing, building, and deploying to AWS or other platforms.
+- **Logging and Monitoring**Structured logging throughout all agents and API routes, with timestamped output to file and console.
 - **Data Validation**`pydantic` for type enforcement and schema checks.
 - **Model Management**Timestamp-based versioning, enabling rollbacks and experiment comparisons.
 - **Scalable Forecasting**Designed to handle periodic retraining with optional drift-detection hooks.
@@ -147,8 +145,8 @@ Traditional ML workflows often involve scattered scripts and notebooks, leading 
 - **Backend**: FastAPI (Python 3.12+)
 - **Frontend**: Next.js (React), Tailwind CSS
 - **ML Libraries**: scikit-learn, statsmodels, Prophet, FAISS, SentenceTransformers
-- **Orchestration**: Docker, GitHub Actions, AWS Elastic Beanstalk
-- **Agentic AI**: LangChain, ChromaDB
+- **Orchestration**: Docker
+- **Agentic AI**: FAISS vector search, SentenceTransformer embeddings, Ollama local LLM
 
 ---
 
@@ -241,7 +239,7 @@ Update your frontend’s `NEXT_PUBLIC_API_URL` to point to `http://localhost:800
 
 ## RAG Scraper: Research Summaries
 
-Use `scrape_documents.py` to fetch ML abstracts, deduplicate them, and embed/rank with ChromaDB or FAISS:
+Use `scrape_documents.py` to fetch ML abstracts, deduplicate them, and embed/rank with FAISS vector search:
 
 ```bash
 python scrape_documents.py --source <source_name> --limit <num_papers>

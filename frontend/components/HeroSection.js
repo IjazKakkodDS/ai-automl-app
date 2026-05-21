@@ -64,7 +64,7 @@ export default function HeroSection() {
                 fontWeight="bold"
                 color="teal.300"
               >
-                Enterprise-Grade AutoML Platform
+                AI AutoML Intelligence Platform
               </Heading>
 
               {/* SUBHEADING */}
@@ -74,8 +74,8 @@ export default function HeroSection() {
                 maxW="3xl"
                 mx="auto"
               >
-                Empower your teams with advanced automation—from data ingestion
-                to production deployment. Integrate retrieval-augmented insights
+                Empower your teams with advanced automation, from data ingestion
+                to containerized deployment. Integrate retrieval-augmented insights
                 and agentic AI for faster iteration, greater transparency, and
                 stronger decision-making.
               </Text>
