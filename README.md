@@ -58,7 +58,7 @@ Traditional ML workflows often involve scattered scripts and notebooks, leading 
 
 1. Unify the entire ML lifecycle into a single pipeline.
 2. Automate key steps (preprocessing, EDA, modeling, and reporting).
-3. Enable scalable, production-ready deployment.
+3. Enable scalable, deployment-ready code structure.
 
 ---
 
@@ -78,7 +78,7 @@ Traditional ML workflows often involve scattered scripts and notebooks, leading 
 
 1. **Unified ML-to-Report Pipeline**From raw data ingestion to final PDF/HTML reports, all in one codebase.
 2. **Agentic Intelligence**Orchestrated specialist agents for EDA, feature engineering, model training, and AI insights -- coordinated by an orchestrator decision loop.
-3. **Production-Ready Docker Deployment**Containerize, build, and ship to AWS Elastic Beanstalk for scalable hosting.
+3. **Docker Service Packaging**Containerize and build the backend service with a provided Dockerfile for local and cloud deployment.
 4. **Scalable Forecasting**Modular time-series forecasting, comparing models like Prophet and ARIMA with minimal setup.
 5. **Smart Automation**
    Hyperparameter tuning (Optuna), background tasks for PDF generation, integrated logs, and monitoring.
