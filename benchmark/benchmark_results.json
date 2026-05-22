@@ -1,0 +1,177 @@
+{
+  "metadata": {
+    "timestamp": "2026-05-22T14:39:33.457327+00:00",
+    "python_version": "3.13.1",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "benchmark_mode": "in-process FastAPI TestClient",
+    "iterations_per_endpoint": 10,
+    "synthetic_dataset": {
+      "rows": 200,
+      "cols": 6,
+      "feature_cols": [
+        "f1",
+        "f2",
+        "f3",
+        "f4",
+        "f5"
+      ],
+      "target_col": "target",
+      "task": "regression",
+      "description": "Deterministic synthetic regression CSV, numpy seed=42"
+    },
+    "real_dataset_reference": {
+      "path": "original_data/05261a4e-f676-4be2-9657-0c36d503566b.csv",
+      "rows": 7043,
+      "cols": 21,
+      "source": "Telco Customer Churn (public benchmark dataset)",
+      "note": "Referenced for documentation; not used in this benchmark run."
+    },
+    "external_dependencies_skipped": [
+      "rag_query_summarize",
+      "forecasting_forecast",
+      "reports_download_full",
+      "orchestrator_orchestrate",
+      "evaluation_evaluate"
+    ],
+    "warnings": [
+      "All latencies are local in-process measurements on a developer machine.",
+      "FastAPI TestClient bypasses the network stack; real HTTP latency will be higher.",
+      "EDA latency includes matplotlib figure generation and file I/O to reports/figures/.",
+      "Model training latency includes sklearn fit, evaluation, and .pkl file write to disk.",
+      "AI insights benchmark uses mocked ollama.chat (is_model_available patched True).",
+      "Reset benchmark uses mocked shutil.rmtree; does not reflect actual filesystem cost."
+    ]
+  },
+  "results": {
+    "health_root": {
+      "count": 10,
+      "success": 10,
+      "errors": 0,
+      "min_ms": 0.55,
+      "mean_ms": 0.93,
+      "p50_ms": 0.72,
+      "p95_ms": 1.5,
+      "p99_ms": 1.57,
+      "max_ms": 1.59
+    },
+    "preprocessing_preprocess": {
+      "count": 10,
+      "success": 10,
+      "errors": 0,
+      "min_ms": 7.97,
+      "mean_ms": 8.58,
+      "p50_ms": 8.13,
+      "p95_ms": 10.44,
+      "p99_ms": 11.66,
+      "max_ms": 11.96
+    },
+    "eda_analysis": {
+      "count": 10,
+      "success": 10,
+      "errors": 0,
+      "min_ms": 3179.32,
+      "mean_ms": 3495.57,
+      "p50_ms": 3460.97,
+      "p95_ms": 3934.53,
+      "p99_ms": 3942.32,
+      "max_ms": 3944.26
+    },
+    "model_training_linear": {
+      "count": 10,
+      "success": 10,
+      "errors": 0,
+      "min_ms": 6.36,
+      "mean_ms": 15.03,
+      "p50_ms": 8.09,
+      "p95_ms": 47.42,
+      "p99_ms": 70.63,
+      "max_ms": 76.44
+    },
+    "reports_generate_full": {
+      "count": 10,
+      "success": 10,
+      "errors": 0,
+      "min_ms": 1.62,
+      "mean_ms": 1.84,
+      "p50_ms": 1.81,
+      "p95_ms": 2.15,
+      "p99_ms": 2.27,
+      "max_ms": 2.3
+    },
+    "evaluation_list_models": {
+      "count": 10,
+      "success": 10,
+      "errors": 0,
+      "min_ms": 0.8,
+      "mean_ms": 0.9,
+      "p50_ms": 0.88,
+      "p95_ms": 1.08,
+      "p99_ms": 1.16,
+      "max_ms": 1.18
+    },
+    "ai_insights_generate_mocked": {
+      "count": 10,
+      "success": 10,
+      "errors": 0,
+      "min_ms": 1.71,
+      "mean_ms": 1.95,
+      "p50_ms": 1.89,
+      "p95_ms": 2.46,
+      "p99_ms": 2.73,
+      "max_ms": 2.8
+    },
+    "reset_restart_mocked": {
+      "count": 10,
+      "success": 10,
+      "errors": 0,
+      "min_ms": 1.36,
+      "mean_ms": 1.54,
+      "p50_ms": 1.51,
+      "p95_ms": 1.8,
+      "p99_ms": 1.89,
+      "max_ms": 1.91
+    }
+  },
+  "skipped": {
+    "rag_query_summarize": "Requires FAISS index + SentenceTransformer (Python 3.13 version incompatibility) + Ollama server",
+    "forecasting_forecast": "Requires Prophet package (not installed in Python 3.13 environment)",
+    "reports_download_full": "Requires Chrome at hardcoded Windows path; system dependency not present in CI",
+    "orchestrator_orchestrate": "Requires Ollama + FAISS + SentenceTransformer at runtime; all unavailable",
+    "evaluation_evaluate": "Requires a pre-saved .pkl model file path; covered by unit tests"
+  },
+  "artifacts_cleaned": [
+    "processed_data\\26cb7428-532d-409c-b4cd-00bcd27175c2.csv",
+    "processed_data\\2980a956-d143-41a4-bde0-46f11c21649c.csv",
+    "processed_data\\0cfb7572-ae01-4fea-ad72-bacfdf0ec4e2.csv",
+    "processed_data\\9c09cabf-2202-4695-8916-c35f0ce1420a.csv",
+    "processed_data\\4ba93bee-890c-40fa-b6ed-b6a8e751c1d6.csv",
+    "processed_data\\14021b2e-1069-462a-937a-b2d591ea774f.csv",
+    "processed_data\\ee42b3ff-9788-47e9-84b5-0cfc8b8c3ace.csv",
+    "processed_data\\483ce97f-66f5-4276-9fa6-191fe8870154.csv",
+    "processed_data\\5f946aa2-6a38-46bd-87e1-8bce8b1672c9.csv",
+    "processed_data\\3ac4598c-45cf-469b-9a05-c7fb40656834.csv",
+    "original_data\\3e36587d-8a4c-4154-b26a-c03f7aceaeca.csv",
+    "original_data\\cd2c23d4-dc18-4341-8041-4cdb2a1c684c.csv",
+    "original_data\\0db10632-a75b-430c-a5ca-fccfb705d119.csv",
+    "original_data\\fdabb1ab-129e-404c-b294-b8908c115443.csv",
+    "original_data\\51380a70-a93c-4aea-b4a4-b244ffaf2679.csv",
+    "original_data\\7ca2a8dd-9aa7-4dca-be5c-099d553f3cc4.csv",
+    "original_data\\ebf97dd7-2d1e-4470-9654-e9c35c92a897.csv",
+    "original_data\\9fdaae3a-1894-4433-8b2c-32e7574a1f0d.csv",
+    "original_data\\e485a82d-f40e-42c8-b481-9409897cd34e.csv",
+    "original_data\\db1bc9f5-83d3-49ae-a19a-071539183059.csv",
+    "models\\LinearRegression_1779460773.pkl",
+    "reports/figures\\f5_distribution.png",
+    "reports/figures\\f1_distribution.png",
+    "reports/figures\\f3_distribution.png",
+    "reports/figures\\f2_distribution.png",
+    "reports/figures\\f4_distribution.png",
+    "ai_cache\\a0e333a6a0c08a8dd2e1e661dbcca523.json"
+  ],
+  "tracked_files_restored": [
+    "reports/eda_report.txt",
+    "reports/figures/feature1_distribution.png",
+    "reports/figures/missing_values_heatmap.png",
+    "reports/figures/pairplot.png"
+  ]
+}
