@@ -63,6 +63,7 @@ def test_convert_column_dtype():
     assert pd.api.types.is_numeric_dtype(df_converted["num_str"])
 
 # --- Test Categorical Encoding (One-Hot) ---
+@pytest.mark.skip(reason="_encode_categorical removed from feature_engineering_agent in refactor; no public equivalent to test")
 def test_encode_categorical_onehot():
     df = pd.DataFrame({"cat": ["A", "B", "A", "C"]})
     df_encoded = fe_agent._encode_categorical(df.copy(), method="one-hot")

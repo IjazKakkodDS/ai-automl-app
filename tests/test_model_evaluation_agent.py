@@ -11,12 +11,13 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 # Import evaluate_model from your module.
 from backend.app.agents.evaluation_agent import evaluate_model
+from sklearn.base import ClassifierMixin, RegressorMixin, BaseEstimator
 
 # --- Dummy Models for Testing ---
 
-class DummyClassifier:
+class DummyClassifier(ClassifierMixin, BaseEstimator):
     """A dummy classifier that simulates classification behavior."""
-    def __init__(self, training_columns, constant=1):
+    def __init__(self, training_columns=None, constant=1):
         self._training_columns = training_columns
         self.constant = constant
 
@@ -35,9 +36,9 @@ class DummyClassifier:
                 prob.append([1.0, 0.0])
         return np.array(prob)
 
-class DummyRegressor:
+class DummyRegressor(RegressorMixin, BaseEstimator):
     """A dummy regressor that simulates regression behavior."""
-    def __init__(self, training_columns, constant=10.0):
+    def __init__(self, training_columns=None, constant=10.0):
         self._training_columns = training_columns
         self.constant = constant
 
