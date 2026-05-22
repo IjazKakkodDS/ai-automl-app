@@ -35,3 +35,37 @@ node_modules/
 processed_data/*.csv
 feature_engineered_data/*.csv
 original_data/*.csv
+
+# ────────────── Environment and Secrets ──────────────
+.env
+.env.*
+!.env.example
+
+# ────────────── Test Cache ──────────────
+.pytest_cache/
+
+# ────────────── Frontend Builds (Next.js) ──────────────
+frontend/.next/
+frontend/out/
+frontend/node_modules/
+
+# ────────────── Generated Runtime Reports ──────────────
+# Prevents future generated artifacts from being tracked.
+# Existing tracked files in reports/ are not affected by this rule.
+reports/*.html
+reports/*.pdf
+reports/*.txt
+reports/*.csv
+reports/*.json
+
+# ────────────── Generated Model Reports ──────────────
+model_reports/*.csv
+
+# ────────────── Generated Model Artifacts ──────────────
+models/**/*.pkl
+models/**/*.joblib
+*.pkl
+*.joblib
+
+# ────────────── Log Directory ──────────────
+logs/
