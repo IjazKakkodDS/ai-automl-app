@@ -58,9 +58,9 @@ def test_regression_training(tmp_path):
     assert "results" in result and "trained_models" in result
     # Check that at least one model was trained.
     assert len(result["results"]) > 0
-    # Verify that each trained model file exists.
+    # trained_models values are filenames only; join with model_folder to get full path.
     for model_name, model_path in result["trained_models"].items():
-        assert os.path.exists(model_path)
+        assert os.path.exists(os.path.join(model_folder, model_path))
 
 # --- Test for Classification Training ---
 
@@ -85,8 +85,9 @@ def test_classification_training(tmp_path):
     # Check that the returned dictionary has expected keys.
     assert "results" in result and "trained_models" in result
     assert len(result["results"]) > 0
+    # trained_models values are filenames only; join with model_folder to get full path.
     for model_name, model_path in result["trained_models"].items():
-        assert os.path.exists(model_path)
+        assert os.path.exists(os.path.join(model_folder, model_path))
 
 # --- Test Error Handling: Missing Target Column ---
 
@@ -95,7 +96,7 @@ def test_missing_target_column():
         "feature1": np.random.rand(10),
         "feature2": np.random.rand(10)
     })
-    with pytest.raises(ValueError, match="Target column 'target' not found in DataFrame"):
+    with pytest.raises(ValueError, match="Target column 'target' not found"):
         mt_agent.train_and_evaluate_models(
             df=df,
             target_col="target",

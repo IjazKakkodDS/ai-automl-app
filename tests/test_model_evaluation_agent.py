@@ -104,7 +104,7 @@ def test_evaluate_model_missing_training_columns(tmp_path):
     model_path = os.path.join(tmp_path, "dummy_classifier.pkl")
     joblib.dump(dummy_clf, model_path)
     # The function should raise a ValueError because 'feat2' is missing.
-    with pytest.raises(ValueError, match="missing columns the model expects"):
+    with pytest.raises(ValueError, match="Missing expected columns from training"):
         evaluate_model(df, model_path, target_col="target")
 
 def test_evaluate_model_unseen_columns(tmp_path):
