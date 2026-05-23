@@ -203,11 +203,77 @@ def _git_restore(paths: list) -> list:
 
 
 # ---------------------------------------------------------------------------
+# Real dataset helpers
+# ---------------------------------------------------------------------------
+_TELCO_CSV_PATH = "original_data/05261a4e-f676-4be2-9657-0c36d503566b.csv"
+
+
+def load_telco_csv_bytes() -> bytes:
+    """Load the tracked Telco Customer Churn CSV as raw bytes (978 KB, 7043 rows)."""
+    return Path(_TELCO_CSV_PATH).read_bytes()
+
+
+def prepare_telco_model_bytes() -> tuple:
+    """Return (csv_bytes, row_count) for a cleaned Telco model-training dataset.
+
+    customerID is a high-cardinality string ID column (7043 unique values) that
+    would expand one-hot encoding to 7043 columns and is not a predictive feature.
+    TotalCharges is dtype object in the raw file; 11 rows with tenure=0 contain
+    empty strings rather than numeric values.  Coercing and dropping those rows
+    yields a clean 7032-row x 20-col dataset suitable for LogisticRegression with
+    one-hot encoding.
+    """
+    import pandas as pd
+    df = pd.read_csv(_TELCO_CSV_PATH)
+    df = df.drop(columns=["customerID"])
+    df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce")
+    df = df.dropna(subset=["TotalCharges"])
+    return df.to_csv(index=False).encode(), len(df)
+
+
+# Telco figures that are already tracked in git and will be overwritten by EDA.
+# git restore is safe to call even if the file was not actually modified.
+_TELCO_TRACKED_FIGURES = [
+    "reports/figures/Churn_countplot.png",
+    "reports/figures/Contract_countplot.png",
+    "reports/figures/customerID_countplot.png",
+    "reports/figures/Dependents_countplot.png",
+    "reports/figures/DeviceProtection_countplot.png",
+    "reports/figures/gender_countplot.png",
+    "reports/figures/InternetService_countplot.png",
+    "reports/figures/MonthlyCharges_distribution.png",
+    "reports/figures/MultipleLines_countplot.png",
+    "reports/figures/OnlineBackup_countplot.png",
+    "reports/figures/OnlineSecurity_countplot.png",
+    "reports/figures/PaperlessBilling_countplot.png",
+    "reports/figures/Partner_countplot.png",
+    "reports/figures/PaymentMethod_countplot.png",
+    "reports/figures/PhoneService_countplot.png",
+    "reports/figures/SeniorCitizen_distribution.png",
+    "reports/figures/StreamingMovies_countplot.png",
+    "reports/figures/StreamingTV_countplot.png",
+    "reports/figures/TechSupport_countplot.png",
+    "reports/figures/TotalCharges_countplot.png",
+    "reports/figures/tenure_distribution.png",
+]
+
+
+# ---------------------------------------------------------------------------
 # Main benchmark
 # ---------------------------------------------------------------------------
 def main():
     N = 10
+    N_REAL_LIGHT = 5
+    N_REAL_HEAVY = 3
     csv_bytes = make_regression_csv(200)
+
+    # Prepare real dataset bytes before the benchmark run (avoids repeated I/O)
+    real_csv_bytes: bytes = None
+    telco_model_bytes: bytes = None
+    telco_rows_clean: int = None
+    if os.path.exists(_TELCO_CSV_PATH):
+        real_csv_bytes = load_telco_csv_bytes()
+        telco_model_bytes, telco_rows_clean = prepare_telco_model_bytes()
 
     # Snapshot watched directories before the benchmark run
     watched = {
@@ -216,9 +282,12 @@ def main():
         "models":         _snapshot("models"),
         "reports/figures": _snapshot("reports/figures"),
         "ai_cache":       _snapshot("ai_cache"),
+        "reports":        _snapshot("reports"),
+        "model_reports":  _snapshot("model_reports"),
     }
 
     results: dict = {}
+    real_results: dict = {}
     skipped: dict = {}
 
     print()
@@ -322,6 +391,58 @@ def main():
 
         results["reset_restart_mocked"] = measure(_bench_reset, N)
 
+        # ------------------------------------------------------------------
+        # Real dataset benchmark: Telco Customer Churn (7043 rows, 21 cols)
+        # ------------------------------------------------------------------
+        if real_csv_bytes is not None:
+            print()
+            print(f"  --- Real dataset: Telco Churn ({telco_rows_clean} model-training rows, 21 cols) ---")
+            print(f"  N_light={N_REAL_LIGHT}  N_heavy={N_REAL_HEAVY}")
+            print()
+
+            # R1. Preprocessing on raw Telco CSV
+            print("  Benchmarking POST /preprocessing/preprocess/ (Telco 7043 rows) ...")
+            _rcb = real_csv_bytes
+            real_results["preprocessing_preprocess_telco"] = measure(
+                lambda: client.post(
+                    "/preprocessing/preprocess/",
+                    files={"file": ("telco.csv", io.BytesIO(_rcb), "text/csv")},
+                ),
+                N_REAL_LIGHT,
+            )
+
+            # R2. EDA on raw Telco CSV (max_numeric_cols=3 limits pairplot to 3 features)
+            print("  Benchmarking POST /eda/analysis/ (Telco 7043 rows, max_numeric_cols=3) ...")
+            real_results["eda_analysis_telco"] = measure(
+                lambda: client.post(
+                    "/eda/analysis/",
+                    files={"file": ("telco.csv", io.BytesIO(_rcb), "text/csv")},
+                    data={"interactive": "false", "sample_size": "7043", "max_numeric_cols": "3"},
+                ),
+                N_REAL_HEAVY,
+            )
+
+            # R3. Model training: LogisticRegression, classification, Churn target
+            # Uses cleaned dataset (customerID dropped, TotalCharges coerced to float).
+            print("  Benchmarking POST /model-training/train/ (Telco, LogisticRegression) ...")
+            _tmb = telco_model_bytes
+            real_results["model_training_logistic_telco"] = measure(
+                lambda: client.post(
+                    "/model-training/train/",
+                    files={"file": ("telco_clean.csv", io.BytesIO(_tmb), "text/csv")},
+                    params={
+                        "target_col": "Churn",
+                        "task_type": "classification",
+                        "selected_models[]": ["LogisticRegression"],
+                        "selected_metrics[]": ["Accuracy", "F1"],
+                        "dataset_source": "original",
+                        "apply_encoding": "true",
+                        "encoding_method": "one-hot",
+                    },
+                ),
+                N_REAL_HEAVY,
+            )
+
         # Skipped
         skipped["rag_query_summarize"] = (
             "Requires FAISS index + SentenceTransformer (Python 3.13 version incompatibility) + Ollama server"
@@ -346,25 +467,46 @@ def main():
     for path, before_snap in watched.items():
         all_deleted.extend(_delete_new(path, before_snap))
 
-    # Restore tracked files that EDA benchmark may have overwritten
+    # Restore tracked files that synthetic or real-dataset EDA benchmark may have overwritten.
     tracked_files = [
         "reports/eda_report.txt",
         "reports/figures/feature1_distribution.png",
         "reports/figures/missing_values_heatmap.png",
         "reports/figures/pairplot.png",
-    ]
+        "reports/figures/target_distribution.png",
+        "reports/full_report.html",
+    ] + _TELCO_TRACKED_FIGURES
     restored = _git_restore(tracked_files)
 
     # -------------------------------------------------------------------------
     # Build JSON output
     # -------------------------------------------------------------------------
+    real_dataset_section = {
+        "dataset": {
+            "path": _TELCO_CSV_PATH,
+            "source": "Telco Customer Churn (public benchmark dataset)",
+            "rows_raw": 7043,
+            "cols_raw": 21,
+            "rows_model_training": telco_rows_clean,
+            "note": (
+                "Raw CSV (7043 rows, 21 cols) used for preprocessing and EDA benchmarks. "
+                "Model training used a cleaned version: customerID dropped (high-cardinality "
+                "ID column), TotalCharges coerced to float64 (11 empty-string rows dropped). "
+                "apply_encoding=true, encoding_method=one-hot for model training."
+            ),
+        },
+        "n_light": N_REAL_LIGHT,
+        "n_heavy": N_REAL_HEAVY,
+        "results": real_results,
+    } if real_csv_bytes is not None else {"skipped": f"Telco CSV not found at {_TELCO_CSV_PATH}"}
+
     output = {
         "metadata": {
             "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
             "python_version": sys.version.split()[0],
             "platform": platform.platform(),
             "benchmark_mode": "in-process FastAPI TestClient",
-            "iterations_per_endpoint": N,
+            "iterations_per_endpoint_synthetic": N,
             "synthetic_dataset": {
                 "rows": 200,
                 "cols": 6,
@@ -372,13 +514,6 @@ def main():
                 "target_col": "target",
                 "task": "regression",
                 "description": "Deterministic synthetic regression CSV, numpy seed=42",
-            },
-            "real_dataset_reference": {
-                "path": "original_data/05261a4e-f676-4be2-9657-0c36d503566b.csv",
-                "rows": 7043,
-                "cols": 21,
-                "source": "Telco Customer Churn (public benchmark dataset)",
-                "note": "Referenced for documentation; not used in this benchmark run.",
             },
             "external_dependencies_skipped": list(skipped.keys()),
             "warnings": [
@@ -388,9 +523,11 @@ def main():
                 "Model training latency includes sklearn fit, evaluation, and .pkl file write to disk.",
                 "AI insights benchmark uses mocked ollama.chat (is_model_available patched True).",
                 "Reset benchmark uses mocked shutil.rmtree; does not reflect actual filesystem cost.",
+                "Real dataset model training uses cleaned Telco CSV (customerID dropped, TotalCharges coerced).",
             ],
         },
         "results": results,
+        "real_dataset_benchmark": real_dataset_section,
         "skipped": skipped,
         "artifacts_cleaned": all_deleted,
         "tracked_files_restored": restored,
@@ -414,13 +551,18 @@ def main():
         "ai_insights_generate_mocked": "POST /ai-insights/generate/ (mocked)",
         "reset_restart_mocked":        "POST /reset/restart-analysis (mocked)",
     }
+    real_labels = {
+        "preprocessing_preprocess_telco":   "POST /preprocessing/preprocess/ (Telco)",
+        "eda_analysis_telco":               "POST /eda/analysis/ (Telco 7043 rows)",
+        "model_training_logistic_telco":    "POST /model-training/train/ (LR Telco)",
+    }
 
     print()
     print("=" * 82)
     print("  AI AutoML Intelligence Platform  -  Local In-Process Benchmark Results")
     print("=" * 82)
     print(f"  Mode:    FastAPI TestClient (in-process, no network)")
-    print(f"  N:       {N} iterations per endpoint")
+    print(f"  N:       {N} iterations per endpoint (synthetic)")
     print(f"  Dataset: synthetic 200-row regression CSV (seed=42, 5 features)")
     print()
     hdr = (
@@ -444,6 +586,27 @@ def main():
                 f"  {ok_str:>5}"
             )
     print()
+    if real_results:
+        print(f"  Real dataset: Telco Churn (raw 7043 rows; {telco_rows_clean} rows for model training)")
+        print(f"  N_light={N_REAL_LIGHT}  N_heavy={N_REAL_HEAVY}")
+        print()
+        print(hdr)
+        print("  " + "-" * 78)
+        for key, label in real_labels.items():
+            if key in real_results:
+                r = real_results[key]
+                ok_str = f"{r['success']}/{r['count']}"
+                print(
+                    f"  {label:<46}"
+                    f"{r['count']:>3}"
+                    f"  {r['mean_ms']:>7.1f}"
+                    f"  {r['p50_ms']:>7.1f}"
+                    f"  {r['p95_ms']:>7.1f}"
+                    f"  {r['p99_ms']:>7.1f}"
+                    f"  {r['max_ms']:>7.1f}"
+                    f"  {ok_str:>5}"
+                )
+        print()
     print("  All times in milliseconds (ms).")
     print()
     print("  Skipped (external service or package unavailable):")
