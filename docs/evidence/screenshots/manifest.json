@@ -1,0 +1,75 @@
+{
+  "captured": "2026-05-23T16:32:37.741Z",
+  "results": [
+    {
+      "file": "01_homepage.png",
+      "label": "Homepage / Platform Hero",
+      "url": "http://localhost:3000/",
+      "status": "OK",
+      "bytes": 114834
+    },
+    {
+      "file": "02_preprocessing.png",
+      "label": "Preprocessing - Upload & Configure",
+      "url": "http://localhost:3000/preprocessing",
+      "status": "OK",
+      "bytes": 66610
+    },
+    {
+      "file": "03_eda.png",
+      "label": "EDA - Exploratory Data Analysis",
+      "url": "http://localhost:3000/eda",
+      "status": "OK",
+      "bytes": 65217
+    },
+    {
+      "file": "04_feature_engineering.png",
+      "label": "Feature Engineering",
+      "url": "http://localhost:3000/feature-engineering",
+      "status": "OK",
+      "bytes": 54050
+    },
+    {
+      "file": "05_model_training.png",
+      "label": "Model Training",
+      "url": "http://localhost:3000/model-training",
+      "status": "OK",
+      "bytes": 220613
+    },
+    {
+      "file": "06_evaluate.png",
+      "label": "Evaluate - Model Evaluation",
+      "url": "http://localhost:3000/evaluate",
+      "status": "OK",
+      "bytes": 287149
+    },
+    {
+      "file": "07_forecasting.png",
+      "label": "Forecasting",
+      "url": "http://localhost:3000/forecasting",
+      "status": "OK",
+      "bytes": 247984
+    },
+    {
+      "file": "08_insights.png",
+      "label": "AI Insights",
+      "url": "http://localhost:3000/insights",
+      "status": "OK",
+      "bytes": 98749
+    },
+    {
+      "file": "09_rag.png",
+      "label": "RAG Query Interface",
+      "url": "http://localhost:3000/rag",
+      "status": "OK",
+      "bytes": 93253
+    },
+    {
+      "file": "10_reports.png",
+      "label": "Reports",
+      "url": "http://localhost:3000/reports",
+      "status": "OK",
+      "bytes": 44431
+    }
+  ]
+}
