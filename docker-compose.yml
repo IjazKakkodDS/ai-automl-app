@@ -1,0 +1,76 @@
+# docker-compose.yml
+#
+# AI AutoML Intelligence Platform -- local orchestration for portfolio/demo use.
+# Not a production deployment. Not cloud-deployed.
+#
+# -------------------------------------------------------------------------
+# IMPORTANT: Ollama is NOT containerized here.
+# Ollama must be running on the host machine for AI insights and RAG queries.
+# Install Ollama from https://ollama.com and run it separately.
+# The backend reaches Ollama via host.docker.internal:11434.
+# Without a running Ollama server, those endpoints return errors; all other
+# pipeline stages (preprocessing, EDA, model training, reports) work normally.
+# -------------------------------------------------------------------------
+#
+# Usage:
+#   docker compose build
+#   docker compose up -d
+#   docker compose ps
+#   docker compose logs backend
+#   docker compose down
+
+services:
+
+  # -----------------------------------------------------------------------
+  # Backend: FastAPI ML pipeline
+  # Starts uvicorn on 0.0.0.0:8000 inside the container.
+  # Port 8000 is exposed to the host so the browser and frontend can reach it.
+  # -----------------------------------------------------------------------
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: automl-backend:local
+    container_name: automl-backend
+    ports:
+      - "8000:8000"
+    environment:
+      # Ollama runs on the host, not inside Docker.
+      # host.docker.internal resolves to the Docker host on Linux/macOS/Windows.
+      OLLAMA_HOST: http://host.docker.internal:11434
+      OLLAMA_MODEL: mistral
+      CORS_ALLOWED_ORIGINS: "http://localhost:3000"
+      BACKEND_HOST: "0.0.0.0"
+      BACKEND_PORT: "8000"
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import urllib.request; urllib.request.urlopen('http://localhost:8000/')"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+
+  # -----------------------------------------------------------------------
+  # Frontend: Next.js UI
+  # Starts next start on port 3000 inside the container.
+  # API calls are made browser-side to http://127.0.0.1:8000 (hardcoded in
+  # frontend/lib/api.js), which reaches the backend via the host-mapped port.
+  # -----------------------------------------------------------------------
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: automl-frontend:local
+    container_name: automl-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      # NEXT_PUBLIC_API_BASE_URL is documented here for reference.
+      # The current app uses a hardcoded URL in frontend/lib/api.js.
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:8000
+      NEXT_TELEMETRY_DISABLED: "1"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
