@@ -18,8 +18,9 @@ A full-stack AutoML workflow platform for automated data preprocessing,
 exploratory data analysis, feature engineering, multi-model training,
 evaluation, time-series forecasting, RAG-assisted insight generation, and
 report export. The system exposes each pipeline stage through a FastAPI
-backend and a Next.js frontend, benchmarked against both a synthetic
-200-row dataset and a real 7,043-row Telco Customer Churn dataset.
+backend and a Next.js frontend, validated through API tests, Docker smoke
+tests, visual walkthrough evidence, and stage-level benchmarks on synthetic
+and public tabular datasets.
 
 ---
 
@@ -83,25 +84,25 @@ test output files, and API introspection evidence generated during Phase
 
 ## Quantitative Snapshot
 
-| Metric | Value |
-|--------|-------|
-| Backend framework | FastAPI 0.110 |
-| Frontend framework | Next.js 15.2.1 |
-| API routes (total, including root) | 16 |
-| Application endpoints | 15 |
-| Route modules | 11 |
-| Agent modules | 8 |
-| Frontend pages | 10 |
-| Integration tests added (Phase 6B.3B) | 20 |
+| Dimension | Evidence |
+|-----------|----------|
+| Backend surface | 16 FastAPI routes across 11 route modules |
+| Workflow engine | 8 specialist agent modules covering preprocessing, EDA, feature engineering, training, evaluation, forecasting, AI insights, and orchestration |
+| Frontend surface | 10 Next.js product pages covering the full ML workflow |
 | Test baseline | 57 passed, 3 skipped, 0 failed |
-| Synthetic benchmark dataset | 200 rows, 6 columns, regression |
-| Real benchmark dataset | Telco Customer Churn, 7,043 rows, 21 columns |
-| Preprocessing P50 (Telco, 7,043 rows) | 231 ms |
-| EDA P50 (Telco, 7,043 rows, 3 numeric cols) | 94,229 ms |
-| LogisticRegression training P50 (Telco, 7,032 rows) | 818 ms |
-| Screenshot artifacts | 15 (10 UI routes + 5 report artifacts) |
-| Docker evidence | backend + frontend images smoke-tested locally |
-| RAG stack | FAISS + SentenceTransformer + Ollama |
+| Integration testing | 20 FastAPI TestClient integration tests added |
+| Visual evidence | 15 screenshots and generated ML artifacts |
+| Containerization | Backend and frontend Docker images smoke-tested with Docker Compose |
+| RAG layer | FAISS vector search + SentenceTransformer embeddings + local Ollama generation |
+| Benchmark coverage | Synthetic control benchmark + real public Telco Churn workflow benchmark |
+| Real benchmark result | 231 ms preprocessing P50 and 818 ms LogisticRegression training P50 on the Telco workflow benchmark |
+| Bottleneck identified | EDA visualization generation: 94,229 ms P50 due to pairplots, categorical countplots, and large figure serialization |
+
+Benchmark datasets are used here as controlled validation inputs, not as the
+primary measure of system scale. The main engineering evidence is the breadth
+of the workflow surface, API coverage, test baseline, Docker orchestration,
+visual evidence, and measured stage-level latency. Larger batch and
+multi-dataset stress tests are a planned next scaling step.
 
 > All latency figures are local in-process FastAPI TestClient measurements on
 > a developer machine (Windows 11, Python 3.13.1). They reflect local workflow
