@@ -191,7 +191,7 @@ reports) are written to predictable directories.
 ## Role in Workflow
 
 ```mermaid
-flowchart TD
+graph TD
     A[Raw CSV Dataset] --> B[AI AutoML Intelligence Platform]
     B --> C[Processed Dataset]
     B --> D[EDA Report and Figures]
@@ -214,48 +214,97 @@ and are accessible via API responses or direct file system access.
 ## Architecture
 
 ```mermaid
-flowchart TD
-    subgraph Frontend["Frontend - Next.js 15.2.1"]
-        UI1["/preprocessing"] & UI2["/eda"] & UI3["/model-training"] & UI4["/evaluate"]
-        UI5["/forecasting"] & UI6["/insights"] & UI7["/rag"] & UI8["/reports"]
+graph TD
+    subgraph Frontend["Frontend: Next.js"]
+        UI1["Preprocessing page"]
+        UI2["EDA page"]
+        UI3["Model training page"]
+        UI4["Evaluation page"]
+        UI5["Forecasting page"]
+        UI6["Insights page"]
+        UI7["RAG page"]
+        UI8["Reports page"]
     end
 
-    subgraph Backend["Backend - FastAPI 0.110"]
-        R1[preprocessing_routes] --> A1[preprocessing_agent]
-        R2[eda_routes] --> A2[eda_agent]
-        R3[feature_engineering_routes] --> A3[feature_engineering_agent]
-        R4[model_training_routes] --> A4[model_training_agent]
-        R5[evaluation_routes] --> A5[evaluation_agent]
-        R6[forecasting_routes] --> A6[forecasting_agent]
-        R7[ai_insights_routes] --> A7[ai_insights_agent]
-        R8[rag_routes] --> A8[RAG layer]
-        R9[orchestrator_routes] --> Orch[orchestrator_agent]
-        R10[reports_routes] --> ReportGen[report assembler]
-        R11[reset_routes] --> SessionMgr[session reset]
+    subgraph Backend["Backend: FastAPI"]
+        R1["Preprocessing routes"]
+        R2["EDA routes"]
+        R3["Feature engineering routes"]
+        R4["Model training routes"]
+        R5["Evaluation routes"]
+        R6["Forecasting routes"]
+        R7["AI insights routes"]
+        R8["RAG routes"]
+        R9["Orchestrator routes"]
+        R10["Reports routes"]
+        R11["Reset routes"]
+
+        A1["Preprocessing agent"]
+        A2["EDA agent"]
+        A3["Feature engineering agent"]
+        A4["Model training agent"]
+        A5["Evaluation agent"]
+        A6["Forecasting agent"]
+        A7["AI insights agent"]
+        A8["RAG layer"]
+        ORCH["Orchestrator agent"]
+        REP["Report assembler"]
+        RESET["Session reset"]
     end
 
-    subgraph RAG["RAG Layer - Local"]
-        KB[Knowledge Base - data_1/] --> ST[SentenceTransformer embeddings]
-        ST --> FI[FAISS index]
-        FI --> OL[Ollama - mistral/gemma2/llama3]
+    subgraph Retrieval["RAG Layer"]
+        KB["Knowledge base"]
+        ST["SentenceTransformer embeddings"]
+        FI["FAISS index"]
+        OL["Ollama local LLM"]
     end
 
     subgraph Artifacts["Generated Artifacts"]
-        PD[processed_data/]
-        MF[models/ - PKL files]
-        RP[reports/ - SHAP, forecast, EDA plots]
-        FR[reports/full_report.html + PDF]
+        PD["processed_data"]
+        MF["models"]
+        RP["reports"]
+        FR["full report"]
     end
 
-    Frontend --> Backend
-    A8 --> RAG
+    UI1 --> R1
+    UI2 --> R2
+    UI3 --> R4
+    UI4 --> R5
+    UI5 --> R6
+    UI6 --> R7
+    UI7 --> R8
+    UI8 --> R10
+
+    R1 --> A1
+    R2 --> A2
+    R3 --> A3
+    R4 --> A4
+    R5 --> A5
+    R6 --> A6
+    R7 --> A7
+    R8 --> A8
+    R9 --> ORCH
+    R10 --> REP
+    R11 --> RESET
+
+    A8 --> KB
+    KB --> ST
+    ST --> FI
+    FI --> OL
     A7 --> OL
-    Orch --> A1 & A2 & A4 & A7 & A8
+
+    ORCH --> A1
+    ORCH --> A2
+    ORCH --> A4
+    ORCH --> A7
+    ORCH --> A8
+
     A1 --> PD
-    A4 --> MF & RP
+    A4 --> MF
+    A4 --> RP
     A2 --> RP
     A6 --> RP
-    ReportGen --> FR
+    REP --> FR
 ```
 
 ---
