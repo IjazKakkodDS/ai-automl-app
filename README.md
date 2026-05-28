@@ -71,9 +71,9 @@ and debuggable at each step.
 
 A local RAG layer built on FAISS vector search and SentenceTransformer
 embeddings supports document-grounded insight generation via Ollama, when
-Ollama is running on the host. The orchestrator agent chains the pipeline
-stages autonomously when triggered, though individual stages can also be
-called independently.
+Ollama is running on the host. The orchestrator agent can coordinate
+multiple pipeline stages when triggered, while individual stages remain
+callable independently.
 
 All quantitative claims in this document are traceable to benchmark logs,
 test output files, and API introspection evidence generated during Phase
@@ -115,7 +115,7 @@ test output files, and API introspection evidence generated during Phase
 |-------|------------|-------|
 | Data workflow | pandas, numpy, scikit-learn | Preprocessing, feature transforms, encoders, scalers |
 | ML and evaluation | scikit-learn 1.6, XGBoost, statsmodels | Regression + classification; SHAP for explainability |
-| Time-series forecasting | Prophet, ARIMA (statsmodels) | Prophet requires separate installation; ARIMA built-in |
+| Time-series forecasting | Prophet, ARIMA (statsmodels) | Prophet support is environment-sensitive; ARIMA available via statsmodels |
 | RAG and AI insights | FAISS, SentenceTransformer (all-MiniLM-L6-v2), Ollama | Local retrieval and summarization; no external API required |
 | Backend | FastAPI 0.110, Python 3.12+, uvicorn | 16 routes, 11 modules, async endpoints |
 | Frontend | Next.js 15.2.1, Chakra UI, Recharts, React Select | 10 pages, browser-side API calls, no SSR data fetching |
@@ -432,14 +432,16 @@ Detailed report: [`docs/evidence/benchmark_report.md`](docs/evidence/benchmark_r
 57 passed, 3 skipped, 0 failed
 ```
 
-The test suite covers unit tests for all 8 agent modules and 20 API
-integration tests added during Phase 6B.3B.
+The test suite covers core agent behavior and API integration paths
+across preprocessing, EDA, model training, evaluation, orchestration,
+and backend route behavior. Phase 6B.3B added 20 FastAPI TestClient
+integration tests.
 
 | Category | Files | Coverage focus |
 |----------|-------|---------------|
 | Agent unit tests | `test_eda_agent.py`, `test_model_training_agent.py`, `test_preprocessing_agent.py`, `test_orchestrator_agent.py` | Agent logic, data transformations, error handling |
 | API integration tests | `test_api_health.py`, `test_api_preprocessing.py`, `test_api_eda.py`, `test_api_model_training.py` | HTTP status codes, response keys, error cases |
-| 3 skipped | `test_api_model_training.py` | Intentionally skipped: external-dependent behaviors (Ollama, Prophet) |
+| 3 skipped | Legacy or intentionally excluded tests | Two AI-insight prompt-template expectations and one removed helper-function test are skipped and documented in `docs/evidence/test_run_output.txt`. |
 
 **Integration test coverage by endpoint:**
 
@@ -502,6 +504,10 @@ GET http://localhost:8000/
 GET http://localhost:3000/
 HTTP 200 - 62,166 bytes (Next.js HTML)
 ```
+
+The image size is acceptable for local evidence and demonstration, but
+future deployment work should split heavyweight ML/RAG dependencies or
+use slimmer runtime profiles.
 
 Full evidence: [`docs/evidence/docker_smoke_test.md`](docs/evidence/docker_smoke_test.md)
 
@@ -592,7 +598,7 @@ via FastAPI's built-in OpenAPI interface.
 | 4 | POST | `/feature-engineering/advanced/` | Advanced feature transformation | Agent unit tests | None |
 | 5 | GET | `/feature-engineering/columns/` | Column metadata inspection | None | None |
 | 6 | POST | `/model-training/train/` | Train and evaluate ML models | Yes (5 tests) | None |
-| 7 | POST | `/forecasting/forecast/` | Time-series forecasting | Skipped | Prophet (install needed) |
+| 7 | POST | `/forecasting/forecast/` | Time-series forecasting | Skipped | Prophet (environment-sensitive) |
 | 8 | GET | `/evaluation/list-models/` | List saved models in session | Yes (2 tests) | None |
 | 9 | POST | `/evaluation/evaluate/` | Evaluate saved model on new data | Agent unit tests | Pre-saved PKL |
 | 10 | POST | `/ai-insights/generate/` | LLM narrative insights | Skipped (Ollama) | Ollama local |
@@ -655,8 +661,8 @@ results are returned.
 
 Navigate to `/forecasting`. Select Prophet or ARIMA, set the target column
 and forecast period. The agent returns a forecast CSV and saves a forecast
-chart to `reports/`. Prophet must be installed in the host Python
-environment to use this step.
+chart to `reports/`. Prophet availability depends on the Python environment; validate before
+use. ARIMA is available via statsmodels as an alternative.
 
 **8. Generate AI insights and RAG answers (if Ollama is running)**
 
@@ -682,13 +688,13 @@ installed at the expected system path.
 | Benchmark is local in-process only | All latencies were measured via FastAPI TestClient with no network stack; not representative of deployment server throughput |
 | EDA is visualization-heavy | P50 of 94 seconds on 7,043 rows is dominated by matplotlib figure generation (18 countplots + pairplot) and large JSON serialization in the response; the route is a report generation step, not a low-latency query |
 | Ollama must run separately | AI insights and RAG routes require Ollama on the host; Docker Compose reaches it via `host.docker.internal:11434`; without it, those two endpoints return errors |
-| Prophet not installed in Python 3.13 | The forecasting route exists and is implemented; Prophet's dependency resolution breaks under Python 3.13; the endpoint is skipped in the test suite and flagged in the benchmark |
+| Prophet support is environment-sensitive | The forecasting route is implemented, but Prophet dependency resolution can vary by Python version and environment. ARIMA remains available through statsmodels, while Prophet usage should be validated in the target runtime. |
 | PDF download requires system Chrome | `GET /reports/download-full` requires Chrome at a hardcoded Windows path; Linux containers do not have Chrome by default |
 | No authentication | There is no login system; the platform is suited for local and demo use |
 | Session state in localStorage | Pipeline state (`dataset_id`, `session_id`) is stored in browser `localStorage`; clearing storage resets pipeline continuity |
 | Large Docker images | The backend image is 17.6 GB due to PyTorch, CUDA runtime, and the full ML dependency stack; initial build is time-intensive |
 | No persistent Docker volume | Uploaded data and generated reports are not persisted across `docker compose down` without an explicit volume mount |
-| 3 tests skipped | Forecasting route (Prophet not installed) and two Ollama-dependent tests are skipped; skips are expected and documented |
+| 3 tests skipped | Two AI-insight prompt-template expectations and one removed helper-function test are skipped; skips are expected and documented in `docs/evidence/test_run_output.txt` |
 
 ---
 
