@@ -74,10 +74,11 @@ export default function HeroSection() {
                 maxW="3xl"
                 mx="auto"
               >
-                Empower your teams with advanced automation, from data ingestion
-                to containerized deployment. Integrate retrieval-augmented insights
-                and agentic AI for faster iteration, greater transparency, and
-                stronger decision-making.
+                A full-stack AutoML workflow system for dataset preprocessing,
+                exploratory analysis, multi-model training, evaluation, and
+                time-series forecasting. Each pipeline stage is a separately
+                callable, inspectable API route backed by a dedicated agent
+                module.
               </Text>
 
               {/* KEY HIGHLIGHTS */}
@@ -91,15 +92,15 @@ export default function HeroSection() {
               >
                 <ListItem>
                   <ListIcon as={CheckCircleIcon} color="teal.400" />
-                  Automated EDA, Feature Engineering &amp; Model Selection
+                  Automated Preprocessing, EDA &amp; Feature Engineering
                 </ListItem>
                 <ListItem>
                   <ListIcon as={CheckCircleIcon} color="teal.400" />
-                  RAG-Based AI Guidance from Documentation &amp; Logs
+                  Multi-Model Training with SHAP Explainability
                 </ListItem>
                 <ListItem>
                   <ListIcon as={CheckCircleIcon} color="teal.400" />
-                  Explainable, End-to-End Workflows for Confident Deployments
+                  Local FAISS Retrieval and Agentic AI Insights via Ollama
                 </ListItem>
               </List>
 
@@ -133,8 +134,8 @@ export default function HeroSection() {
 
               {/* TAGLINE */}
               <Text fontSize="sm" color="gray.500" mt={1}>
-                Perfect for analytics managers &amp; data scientists seeking
-                faster, more impactful insights.
+                57 tests passed · Docker Compose orchestrated · benchmarked on
+                synthetic and public tabular datasets.
               </Text>
             </VStack>
           )}

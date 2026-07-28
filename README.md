@@ -191,19 +191,7 @@ reports) are written to predictable directories.
 
 ## Role in Workflow
 
-```mermaid
-graph TD
-    A[Raw CSV Dataset] --> B[AI AutoML Intelligence Platform]
-    B --> C[Processed Dataset]
-    B --> D[EDA Report and Figures]
-    B --> E[Trained Model Files and SHAP Plots]
-    B --> F[Forecast Chart and CSV]
-    B --> G[AI Insights via Ollama]
-    B --> H[Full HTML/PDF Report]
-
-    I[Local Knowledge Base] --> B
-    J[Ollama Local LLM] --> B
-```
+![Platform Role in the ML Workflow: the AI AutoML Intelligence Platform sits between a raw CSV input, a local knowledge base, and Ollama, producing processed datasets, EDA reports, trained models, forecasts, AI insights, and full reports](docs/assets/diagrams/01_role_in_workflow.svg)
 
 The platform sits between a raw CSV input and a set of structured ML
 artifacts. It does not require cloud credentials, a database, or an
@@ -214,99 +202,16 @@ and are accessible via API responses or direct file system access.
 
 ## Architecture
 
-```mermaid
-graph TD
-    subgraph Frontend["Frontend: Next.js"]
-        UI1["Preprocessing page"]
-        UI2["EDA page"]
-        UI3["Model training page"]
-        UI4["Evaluation page"]
-        UI5["Forecasting page"]
-        UI6["Insights page"]
-        UI7["RAG page"]
-        UI8["Reports page"]
-    end
+![System Architecture: ten pipeline stages flow from Next.js frontend pages through FastAPI routes into dedicated agent modules, with a FAISS plus SentenceTransformer plus Ollama retrieval layer and generated artifacts written to local directories](docs/assets/diagrams/02_system_architecture.svg)
 
-    subgraph Backend["Backend: FastAPI"]
-        R1["Preprocessing routes"]
-        R2["EDA routes"]
-        R3["Feature engineering routes"]
-        R4["Model training routes"]
-        R5["Evaluation routes"]
-        R6["Forecasting routes"]
-        R7["AI insights routes"]
-        R8["RAG routes"]
-        R9["Orchestrator routes"]
-        R10["Reports routes"]
-        R11["Reset routes"]
-
-        A1["Preprocessing agent"]
-        A2["EDA agent"]
-        A3["Feature engineering agent"]
-        A4["Model training agent"]
-        A5["Evaluation agent"]
-        A6["Forecasting agent"]
-        A7["AI insights agent"]
-        A8["RAG layer"]
-        ORCH["Orchestrator agent"]
-        REP["Report assembler"]
-        RESET["Session reset"]
-    end
-
-    subgraph Retrieval["RAG Layer"]
-        KB["Knowledge base"]
-        ST["SentenceTransformer embeddings"]
-        FI["FAISS index"]
-        OL["Ollama local LLM"]
-    end
-
-    subgraph Artifacts["Generated Artifacts"]
-        PD["processed_data"]
-        MF["models"]
-        RP["reports"]
-        FR["full report"]
-    end
-
-    UI1 --> R1
-    UI2 --> R2
-    UI3 --> R4
-    UI4 --> R5
-    UI5 --> R6
-    UI6 --> R7
-    UI7 --> R8
-    UI8 --> R10
-
-    R1 --> A1
-    R2 --> A2
-    R3 --> A3
-    R4 --> A4
-    R5 --> A5
-    R6 --> A6
-    R7 --> A7
-    R8 --> A8
-    R9 --> ORCH
-    R10 --> REP
-    R11 --> RESET
-
-    A8 --> KB
-    KB --> ST
-    ST --> FI
-    FI --> OL
-    A7 --> OL
-
-    ORCH --> A1
-    ORCH --> A2
-    ORCH --> A4
-    ORCH --> A7
-    ORCH --> A8
-
-    A1 --> PD
-    A4 --> MF
-    A4 --> RP
-    A2 --> RP
-    A6 --> RP
-    REP --> FR
-```
+The diagram groups components by layer: frontend pages, backend API routes,
+agent modules (plus the orchestrator, report assembler, and session reset
+utility), the local RAG/retrieval layer, and the artifacts each stage writes
+to disk. Columns align by pipeline stage; the orchestrator sequentially
+chains preprocessing, EDA, model training, RAG retrieval, and AI insights
+when triggered via `POST /orchestrator/orchestrate`, while every stage
+remains independently callable. Full endpoint paths and per-stage outputs
+are listed in the [AutoML Workflow](#automl-workflow) table below.
 
 ---
 
@@ -796,6 +701,11 @@ AutoML_AI_Platform/
 ├── docs/
 │   ├── DEMO_WALKTHROUGH.md
 │   ├── SCREENSHOT_GUIDE.md
+│   ├── assets/
+│   │   └── diagrams/              # Static SVG architecture diagrams
+│   │       ├── 01_role_in_workflow.svg
+│   │       ├── 02_system_architecture.svg
+│   │       └── source/generate_svgs.py
 │   └── evidence/
 │       ├── screenshots/          # 15 PNG files
 │       ├── api_route_inventory.md

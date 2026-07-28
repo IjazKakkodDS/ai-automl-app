@@ -32,8 +32,8 @@ export default function Layout({ children, prevLink, nextLink }) {
   return (
     <>
       <Head>
-        <title>Enterprise AutoML</title>
-        <meta name="description" content="Enterprise-Grade AI & Data Science Workspace" />
+        <title>AI AutoML Intelligence Platform</title>
+        <meta name="description" content="AI AutoML Intelligence Platform — FAISS RAG, agentic AI, and full-stack ML workflow automation" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Flex minH="100vh" bg={layoutBg}>

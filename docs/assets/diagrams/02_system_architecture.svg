@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 610">
+  <title>System Architecture</title>
+  <desc>Ten pipeline stages flow from Next.js frontend pages through FastAPI routes into dedicated agent modules, with a FAISS + SentenceTransformer + Ollama retrieval layer and generated artifacts written to local directories.</desc>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect width="1400" height="610" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="1400" height="46" rx="8" fill="#0F172A"/>
+  <rect x="0" y="34" width="1400" height="12" fill="#0F172A"/>
+  <text x="700" y="30" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="20" font-weight="700" fill="#F1F5F9">System Architecture</text>
+  <rect x="10" y="58" width="1380" height="96" rx="4" fill="#F0FDFA"/>
+  <text x="20" y="77" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="10" font-weight="700" fill="#0D9488" letter-spacing="1.4">FRONTEND -- NEXT.JS</text>
+  <rect x="20" y="88" width="110" height="54" rx="6" fill="#CCFBF1" stroke="#0D9488" stroke-width="1.5"/>
+  <text x="75" y="110" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#134E4A">Preprocessing</text>
+  <text x="75" y="126" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#134E4A" opacity="0.85">/preprocessing</text>
+  <rect x="143" y="88" width="110" height="54" rx="6" fill="#CCFBF1" stroke="#0D9488" stroke-width="1.5"/>
+  <text x="198" y="110" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#134E4A">EDA</text>
+  <text x="198" y="126" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#134E4A" opacity="0.85">/eda</text>
+  <rect x="389" y="88" width="110" height="54" rx="6" fill="#CCFBF1" stroke="#0D9488" stroke-width="1.5"/>
+  <text x="444" y="110" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#134E4A">Model Training</text>
+  <text x="444" y="126" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#134E4A" opacity="0.85">/model-training</text>
+  <rect x="512" y="88" width="110" height="54" rx="6" fill="#CCFBF1" stroke="#0D9488" stroke-width="1.5"/>
+  <text x="567" y="110" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#134E4A">Evaluation</text>
+  <text x="567" y="126" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#134E4A" opacity="0.85">/evaluate</text>
+  <rect x="635" y="88" width="110" height="54" rx="6" fill="#CCFBF1" stroke="#0D9488" stroke-width="1.5"/>
+  <text x="690" y="110" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#134E4A">Forecasting</text>
+  <text x="690" y="126" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#134E4A" opacity="0.85">/forecasting</text>
+  <rect x="758" y="88" width="110" height="54" rx="6" fill="#CCFBF1" stroke="#0D9488" stroke-width="1.5"/>
+  <text x="813" y="110" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#134E4A">AI Insights</text>
+  <text x="813" y="126" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#134E4A" opacity="0.85">/insights</text>
+  <rect x="881" y="88" width="110" height="54" rx="6" fill="#CCFBF1" stroke="#0D9488" stroke-width="1.5"/>
+  <text x="936" y="110" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#134E4A">RAG</text>
+  <text x="936" y="126" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#134E4A" opacity="0.85">/rag</text>
+  <rect x="1127" y="88" width="110" height="54" rx="6" fill="#CCFBF1" stroke="#0D9488" stroke-width="1.5"/>
+  <text x="1182" y="110" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#134E4A">Reports</text>
+  <text x="1182" y="126" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#134E4A" opacity="0.85">/reports</text>
+  <rect x="10" y="164" width="1380" height="98" rx="4" fill="#EFF6FF"/>
+  <text x="20" y="183" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="10" font-weight="700" fill="#2563EB" letter-spacing="1.4">BACKEND -- API ROUTES</text>
+  <rect x="20" y="194" width="110" height="56" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="75" y="227" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#1E3A8A">Preprocessing</text>
+  <rect x="143" y="194" width="110" height="56" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="198" y="227" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#1E3A8A">EDA</text>
+  <rect x="266" y="194" width="110" height="56" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="321" y="227" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#1E3A8A">Feature Eng.</text>
+  <rect x="389" y="194" width="110" height="56" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="444" y="227" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#1E3A8A">Model Training</text>
+  <rect x="512" y="194" width="110" height="56" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="567" y="227" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#1E3A8A">Evaluation</text>
+  <rect x="635" y="194" width="110" height="56" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="690" y="227" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#1E3A8A">Forecasting</text>
+  <rect x="758" y="194" width="110" height="56" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="813" y="227" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#1E3A8A">AI Insights</text>
+  <rect x="881" y="194" width="110" height="56" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="936" y="227" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#1E3A8A">RAG</text>
+  <rect x="1004" y="194" width="110" height="56" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="1059" y="227" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#1E3A8A">Orchestrator</text>
+  <rect x="1127" y="194" width="110" height="56" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="1182" y="227" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#1E3A8A">Reports</text>
+  <rect x="1250" y="194" width="110" height="56" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.5"/>
+  <text x="1305" y="227" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#1E3A8A">Reset</text>
+  <rect x="10" y="272" width="1380" height="98" rx="4" fill="#F5F3FF"/>
+  <text x="20" y="291" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="10" font-weight="700" fill="#7C3AED" letter-spacing="1.4">BACKEND -- AGENTS AND ORCHESTRATION</text>
+  <rect x="20" y="302" width="110" height="56" rx="6" fill="#DDD6FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="75" y="325" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#3B0764">Preprocessing</text>
+  <text x="75" y="341" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#3B0764" opacity="0.85">agent</text>
+  <rect x="143" y="302" width="110" height="56" rx="6" fill="#DDD6FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="198" y="325" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#3B0764">EDA</text>
+  <text x="198" y="341" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#3B0764" opacity="0.85">agent</text>
+  <rect x="266" y="302" width="110" height="56" rx="6" fill="#DDD6FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="321" y="325" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#3B0764">Feature Eng.</text>
+  <text x="321" y="341" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#3B0764" opacity="0.85">agent</text>
+  <rect x="389" y="302" width="110" height="56" rx="6" fill="#DDD6FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="444" y="325" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#3B0764">Model Training</text>
+  <text x="444" y="341" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#3B0764" opacity="0.85">agent</text>
+  <rect x="512" y="302" width="110" height="56" rx="6" fill="#DDD6FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="567" y="325" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#3B0764">Evaluation</text>
+  <text x="567" y="341" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#3B0764" opacity="0.85">agent</text>
+  <rect x="635" y="302" width="110" height="56" rx="6" fill="#DDD6FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="690" y="325" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#3B0764">Forecasting</text>
+  <text x="690" y="341" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#3B0764" opacity="0.85">agent</text>
+  <rect x="758" y="302" width="110" height="56" rx="6" fill="#DDD6FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="813" y="325" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#3B0764">AI Insights</text>
+  <text x="813" y="341" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#3B0764" opacity="0.85">agent</text>
+  <rect x="881" y="302" width="110" height="56" rx="6" fill="#DDD6FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="936" y="325" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#3B0764">RAG</text>
+  <text x="936" y="341" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#3B0764" opacity="0.85">layer</text>
+  <rect x="1004" y="302" width="110" height="56" rx="6" fill="#FEF9C3" stroke="#A16207" stroke-width="1.5"/>
+  <text x="1059" y="325" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#713F12">Orchestrator</text>
+  <text x="1059" y="341" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#713F12" opacity="0.85">agent</text>
+  <rect x="1127" y="302" width="110" height="56" rx="6" fill="#DDD6FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="1182" y="325" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#3B0764">Reports</text>
+  <text x="1182" y="341" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#3B0764" opacity="0.85">assembler</text>
+  <rect x="1250" y="302" width="110" height="56" rx="6" fill="#DDD6FE" stroke="#7C3AED" stroke-width="1.5"/>
+  <text x="1305" y="325" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#3B0764">Reset</text>
+  <text x="1305" y="341" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#3B0764" opacity="0.85">utility</text>
+  <rect x="10" y="380" width="1380" height="104" rx="4" fill="#FFF7ED"/>
+  <text x="20" y="399" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="10" font-weight="700" fill="#EA580C" letter-spacing="1.4">RAG / RETRIEVAL LAYER</text>
+  <rect x="758" y="410" width="140" height="60" rx="6" fill="#FED7AA" stroke="#EA580C" stroke-width="1.5"/>
+  <text x="828" y="435" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#7C2D12">Knowledge Base</text>
+  <text x="828" y="451" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#7C2D12" opacity="0.85">data_1/ documents</text>
+  <rect x="918" y="410" width="140" height="60" rx="6" fill="#FED7AA" stroke="#EA580C" stroke-width="1.5"/>
+  <text x="988" y="435" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#7C2D12">SentenceTransformer</text>
+  <text x="988" y="451" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#7C2D12" opacity="0.85">all-MiniLM-L6-v2</text>
+  <rect x="1078" y="410" width="140" height="60" rx="6" fill="#FED7AA" stroke="#EA580C" stroke-width="1.5"/>
+  <text x="1148" y="435" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#7C2D12">FAISS Index</text>
+  <text x="1148" y="451" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#7C2D12" opacity="0.85">k-NN vector search</text>
+  <rect x="1238" y="410" width="140" height="60" rx="6" fill="#FED7AA" stroke="#EA580C" stroke-width="1.5"/>
+  <text x="1308" y="435" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#7C2D12">Ollama Local LLM</text>
+  <text x="1308" y="451" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#7C2D12" opacity="0.85">Local LLM runtime</text>
+  <rect x="10" y="494" width="1380" height="100" rx="4" fill="#F0FDF4"/>
+  <text x="20" y="513" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="10" font-weight="700" fill="#15803D" letter-spacing="1.4">GENERATED ARTIFACTS</text>
+  <rect x="20" y="524" width="300" height="58" rx="6" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
+  <text x="170" y="548" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="13" font-weight="600" fill="#064E3B">processed_data/</text>
+  <text x="170" y="564" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#064E3B" opacity="0.85">Preprocessed CSVs (UUID-keyed)</text>
+  <rect x="373" y="524" width="300" height="58" rx="6" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
+  <text x="523" y="548" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="13" font-weight="600" fill="#064E3B">models/</text>
+  <text x="523" y="564" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#064E3B" opacity="0.85">Trained PKL files</text>
+  <rect x="726" y="524" width="300" height="58" rx="6" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
+  <text x="876" y="548" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="13" font-weight="600" fill="#064E3B">reports/</text>
+  <text x="876" y="564" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#064E3B" opacity="0.85">EDA figures, SHAP plots, forecast charts</text>
+  <rect x="1079" y="524" width="300" height="58" rx="6" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
+  <text x="1229" y="548" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="13" font-weight="600" fill="#064E3B">full_report.html / .pdf</text>
+  <text x="1229" y="564" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#064E3B" opacity="0.85">Assembled report</text>
+  <line x1="75" y1="142" x2="75" y2="194" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="198" y1="142" x2="198" y2="194" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="444" y1="142" x2="444" y2="194" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="567" y1="142" x2="567" y2="194" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="690" y1="142" x2="690" y2="194" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="813" y1="142" x2="813" y2="194" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="936" y1="142" x2="936" y2="194" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="1182" y1="142" x2="1182" y2="194" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="75" y1="250" x2="75" y2="302" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="198" y1="250" x2="198" y2="302" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="321" y1="250" x2="321" y2="302" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="444" y1="250" x2="444" y2="302" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="567" y1="250" x2="567" y2="302" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="690" y1="250" x2="690" y2="302" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="813" y1="250" x2="813" y2="302" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="936" y1="250" x2="936" y2="302" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="1059" y1="250" x2="1059" y2="302" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="1182" y1="250" x2="1182" y2="302" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="1305" y1="250" x2="1305" y2="302" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="898" y1="440" x2="918" y2="440" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="1058" y1="440" x2="1078" y2="440" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <line x1="1218" y1="440" x2="1238" y2="440" stroke="#475569" stroke-width="2" marker-end="url(#ah)"/>
+  <path d="M936,358 C936,374 828,394 828,410" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+  <path d="M813,358 C 813,395 1308,395 1308,410" stroke="#475569" stroke-width="2" fill="none" stroke-dasharray="6,3" marker-end="url(#ah)"/>
+  <path d="M75,358 C 75,498 170,494 170,524" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+  <path d="M444,358 C 444,498 523,494 523,524" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+  <path d="M198,358 C 198,498 876,494 876,524" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+  <path d="M444,358 C 444,498 876,494 876,524" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+  <path d="M690,358 C 690,498 876,494 876,524" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+  <path d="M1182,358 C 1182,498 1229,494 1229,524" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+</svg>

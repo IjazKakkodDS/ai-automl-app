@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 430">
+  <title>Platform Role in the ML Workflow</title>
+  <desc>The AI AutoML Intelligence Platform sits between a raw CSV input, a local knowledge base, and Ollama, producing processed datasets, EDA reports, trained models, forecasts, AI insights, and full reports.</desc>
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#475569"/>
+    </marker>
+  </defs>
+  <rect width="1400" height="430" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+  <rect x="0" y="0" width="1400" height="46" rx="8" fill="#0F172A"/>
+  <rect x="0" y="34" width="1400" height="12" fill="#0F172A"/>
+  <text x="700" y="30" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="20" font-weight="700" fill="#F1F5F9">Platform Role in the ML Workflow</text>
+  <rect x="10" y="58" width="1380" height="98" rx="4" fill="#F0FDFA"/>
+  <text x="20" y="77" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="10" font-weight="700" fill="#0D9488" letter-spacing="1.4">INPUTS</text>
+  <rect x="100" y="88" width="380" height="58" rx="6" fill="#DBEAFE" stroke="#1D4ED8" stroke-width="1.5"/>
+  <text x="290" y="112" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="600" fill="#1E40AF">Raw CSV Dataset</text>
+  <text x="290" y="128" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#1E40AF" opacity="0.85">User-uploaded tabular data</text>
+  <rect x="510" y="88" width="380" height="58" rx="6" fill="#FED7AA" stroke="#EA580C" stroke-width="1.5"/>
+  <text x="700" y="112" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="600" fill="#7C2D12">Local Knowledge Base</text>
+  <text x="700" y="128" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#7C2D12" opacity="0.85">data_1/ -- FAISS-indexed documents</text>
+  <rect x="920" y="88" width="380" height="58" rx="6" fill="#FEE2E2" stroke="#B91C1C" stroke-width="1.5"/>
+  <text x="1110" y="112" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="14" font-weight="600" fill="#7F1D1D">Ollama Local LLM</text>
+  <text x="1110" y="128" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#7F1D1D" opacity="0.85">mistral / gemma2 / llama3.3</text>
+  <rect x="450" y="180" width="500" height="70" rx="6" fill="#E2E8F0" stroke="#475569" stroke-width="1.5"/>
+  <text x="700" y="210" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="16" font-weight="600" fill="#0F172A">AI AutoML Intelligence Platform</text>
+  <text x="700" y="226" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#0F172A" opacity="0.85">FastAPI backend + Next.js frontend</text>
+  <rect x="10" y="274" width="1380" height="106" rx="4" fill="#F0FDF4"/>
+  <text x="20" y="293" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="10" font-weight="700" fill="#15803D" letter-spacing="1.4">GENERATED OUTPUTS</text>
+  <rect x="20" y="304" width="210" height="64" rx="6" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
+  <text x="125" y="331" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#064E3B">Processed Dataset</text>
+  <text x="125" y="347" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#064E3B" opacity="0.85">processed_data/</text>
+  <rect x="250" y="304" width="210" height="64" rx="6" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
+  <text x="355" y="331" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#064E3B">EDA Report &amp; Figures</text>
+  <text x="355" y="347" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#064E3B" opacity="0.85">reports/figures/</text>
+  <rect x="480" y="304" width="210" height="64" rx="6" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
+  <text x="585" y="331" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#064E3B">Models &amp; SHAP Plots</text>
+  <text x="585" y="347" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#064E3B" opacity="0.85">models/, reports/</text>
+  <rect x="710" y="304" width="210" height="64" rx="6" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
+  <text x="815" y="331" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#064E3B">Forecast Chart &amp; CSV</text>
+  <text x="815" y="347" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#064E3B" opacity="0.85">reports/</text>
+  <rect x="940" y="304" width="210" height="64" rx="6" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
+  <text x="1045" y="331" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#064E3B">AI Insights via Ollama</text>
+  <text x="1045" y="347" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#064E3B" opacity="0.85">reports/ai_insights.txt</text>
+  <rect x="1170" y="304" width="210" height="64" rx="6" fill="#D1FAE5" stroke="#059669" stroke-width="1.5"/>
+  <text x="1275" y="331" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" font-weight="600" fill="#064E3B">Full HTML/PDF Report</text>
+  <text x="1275" y="347" text-anchor="middle" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="11" fill="#064E3B" opacity="0.85">reports/full_report.*</text>
+  <path d="M290,146 C290,162 700,164 700,180" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+  <path d="M700,146 C700,162 700,164 700,180" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+  <path d="M1110,146 C1110,162 700,164 700,180" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+  <path d="M700,250 C700,268 125,288 125,304" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+  <path d="M700,250 C700,268 355,288 355,304" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+  <path d="M700,250 C700,268 585,288 585,304" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+  <path d="M700,250 C700,268 815,288 815,304" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+  <path d="M700,250 C700,268 1045,288 1045,304" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+  <path d="M700,250 C700,268 1275,288 1275,304" stroke="#475569" stroke-width="2" fill="none" marker-end="url(#ah)"/>
+</svg>
