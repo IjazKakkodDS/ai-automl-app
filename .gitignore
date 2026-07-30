@@ -57,9 +57,13 @@ reports/*.pdf
 reports/*.txt
 reports/*.csv
 reports/*.json
+reports/*.png
 
 # ────────────── Generated Model Reports ──────────────
 model_reports/*.csv
+
+# ────────────── AI Insights Cache ──────────────
+ai_cache/
 
 # ────────────── Generated Model Artifacts ──────────────
 models/**/*.pkl
