@@ -30,6 +30,47 @@ def test_get_cache_filename():
     assert cache_filename.startswith(ai_agent.CACHE_DIR)
     assert cache_filename.endswith(".json")
 
+# --- Regression coverage for the orchestrator's model-choice fix ---
+# The orchestrator previously requested model_choice="gpt-4", which is listed
+# in AVAILABLE_MODELS but can never appear in `ollama list` output (GPT-4 is
+# not an Ollama-servable model), so is_model_available("gpt-4") always
+# returned False and generate_ai_insights always raised before ever reaching
+# Ollama. is_model_available is mocked to reflect only "mistral" as installed
+# -- not a blanket bypass for every model -- so these tests exercise the real
+# availability branch rather than hiding it.
+def test_generate_ai_insights_mistral_resolves(tmp_path, monkeypatch):
+    monkeypatch.setattr(ai_agent, "CACHE_DIR", str(tmp_path))
+    monkeypatch.setattr(ai_agent, "is_model_available", lambda model: model.lower() == "mistral")
+    dummy_response = {"response": "Real mistral insight text."}
+    monkeypatch.setattr(
+        ai_agent, "ollama",
+        type("DummyOllama", (), {"chat": lambda **kwargs: dummy_response})
+    )
+
+    insights = ai_agent.generate_ai_insights(
+        eda_summary="Dummy EDA summary",
+        model_summary="Dummy model summary",
+        model_choice="mistral",
+        force_regenerate=True,
+        enable_cot=False,
+    )
+
+    assert insights == "Real mistral insight text."
+
+def test_generate_ai_insights_gpt4_is_genuinely_unavailable(monkeypatch):
+    # Documents the real defect the orchestrator fix avoids: requesting
+    # "gpt-4" fails at the availability check, before Ollama is ever called.
+    monkeypatch.setattr(ai_agent, "is_model_available", lambda model: model.lower() == "mistral")
+
+    with pytest.raises(ValueError):
+        ai_agent.generate_ai_insights(
+            eda_summary="Dummy EDA summary",
+            model_summary="Dummy model summary",
+            model_choice="gpt-4",
+            force_regenerate=True,
+            enable_cot=False,
+        )
+
 # --- Test generate_ai_insights with no cache ---
 @pytest.mark.skip(reason="Hard-coded prompt string in test no longer matches current generate_ai_insights prompt template; cache filename mismatch")
 def test_generate_ai_insights_no_cache(tmp_path, monkeypatch):

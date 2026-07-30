@@ -597,6 +597,7 @@ installed at the expected system path.
 | Prophet support is environment-sensitive | The forecasting route is implemented, but Prophet dependency resolution can vary by Python version and environment. ARIMA remains available through statsmodels, while Prophet usage should be validated in the target runtime. |
 | PDF download requires system Chrome | `GET /reports/download-full` requires Chrome at a hardcoded Windows path; Linux containers do not have Chrome by default |
 | No authentication | There is no login system; the platform is suited for local and demo use |
+| Homepage charts use static sample data | "Training Metrics" and "Class Distribution" on the homepage are hardcoded illustrative arrays (labeled in the UI), not live pipeline output; real results appear on the EDA and Model Training pages |
 | Session state in localStorage | Pipeline state (`dataset_id`, `session_id`) is stored in browser `localStorage`; clearing storage resets pipeline continuity |
 | Large Docker images | The backend image is 17.6 GB due to PyTorch, CUDA runtime, and the full ML dependency stack; initial build is time-intensive |
 | No persistent Docker volume | Uploaded data and generated reports are not persisted across `docker compose down` without an explicit volume mount |
@@ -785,13 +786,22 @@ Copy `.env.example` to `.env` and adjust if needed:
 cp .env.example .env
 ```
 
-Default values work for local development. The only variable that requires
-action is `OLLAMA_HOST` if you want AI insights and RAG endpoints to work:
+Default values work for local development.
 
 ```
 OLLAMA_HOST=http://localhost:11434
 OLLAMA_MODEL=mistral
+CORS_ALLOWED_ORIGINS=http://localhost:3000
 ```
+
+`CORS_ALLOWED_ORIGINS` is read directly by the backend (`backend/app/main.py`)
+and controls the API's CORS allow-list; set it to your frontend's origin if
+you are not using the default `http://localhost:3000`. `OLLAMA_HOST` and
+`OLLAMA_MODEL` are not read directly by this application's code — the AI
+insights and RAG routes call the installed `ollama` Python client without
+passing an explicit host, so whether a non-default `OLLAMA_HOST` takes effect
+depends on that client library's own defaults, not on anything this repository
+implements. Verify independently if you run Ollama on a non-default host.
 
 ### Run tests
 

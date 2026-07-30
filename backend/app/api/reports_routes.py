@@ -49,6 +49,8 @@ async def generate_full_report(
         # --- Training file ---
         train_prefix = f"training_results_{dataset_id}"
         train_files = [f for f in os.listdir(REPORTS_DIR) if f.startswith(train_prefix)]
+        best_model_summary = None
+        best_model_value = None
         if train_files:
             training_content = ""
             for file in train_files:
@@ -59,6 +61,15 @@ async def generate_full_report(
                     df = pd.read_csv(file_path)
                     training_content += "<h3>Training Results (CSV)</h3>"
                     training_content += df.to_html(index=False, justify='left')
+                    # Derive the best-performing model directly from this same
+                    # dataframe -- no invented values, only what was just read.
+                    metric_col = next((c for c in ["R2", "Accuracy", "F1"] if c in df.columns), None)
+                    if metric_col and "Model" in df.columns and not df.empty:
+                        best_row = df.loc[df[metric_col].idxmax()]
+                        value = float(best_row[metric_col])
+                        if best_model_value is None or value > best_model_value:
+                            best_model_value = value
+                            best_model_summary = f"{best_row['Model']} ({metric_col}: {value:.4f})"
                 else:
                     with open(file_path, "r", encoding="utf-8") as f:
                         txt = f.read()
@@ -85,12 +96,18 @@ async def generate_full_report(
         # --- RAG Summary placeholder (if you have a file, load it, else placeholder)
         rag_summary_content = "<p>RAG summary: Not provided. Please run a RAG query if needed.</p>"
 
-        # --- Optional: Executive Summary
-        executive_summary = """
+        # --- Executive Summary ---
+        # Populated only from data already read above in this same request
+        # (eda_content, training_content). The EDA report text is a fixed
+        # narrative template with no per-dataset shape/size information, so
+        # "Data Size" and "Major Findings" are not genuinely derivable from it
+        # and are stated plainly as unavailable rather than invented.
+        best_model_display = best_model_summary or "Not available for this session."
+        executive_summary = f"""
         <ul>
-          <li><strong>Data Size:</strong> [Add dynamic info or leave as a placeholder]</li>
-          <li><strong>Best Model Performance:</strong> [Add R^2 or Accuracy details]</li>
-          <li><strong>Major Findings:</strong> [Brief bullet points about your data]</li>
+          <li><strong>Data Size:</strong> Not available for this session.</li>
+          <li><strong>Best Model Performance:</strong> {best_model_display}</li>
+          <li><strong>Major Findings:</strong> Not available for this session.</li>
         </ul>
         """
 

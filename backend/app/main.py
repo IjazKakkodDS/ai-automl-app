@@ -1,4 +1,5 @@
 import logging
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -32,10 +33,19 @@ app = FastAPI(
     version="1.0.0"
 )
 
+# CORS_ALLOWED_ORIGINS defaults to "*" for local/demo use, matching prior
+# behavior when the variable is unset. Set it to a comma-separated origin
+# list (e.g. "http://localhost:3000") to restrict it.
+_cors_origins_env = os.getenv("CORS_ALLOWED_ORIGINS", "*")
+_cors_allow_origins = (
+    ["*"] if _cors_origins_env == "*"
+    else [origin.strip() for origin in _cors_origins_env.split(",") if origin.strip()]
+)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=_cors_allow_origins,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )

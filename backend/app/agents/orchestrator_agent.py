@@ -75,7 +75,6 @@ class OrchestratorAgent:
         try:
             report, tables, figures = generate_eda(
                 data,
-                target_col=None,
                 interactive=False,
                 exclude_date_features=True,
                 correlation_method="pearson",
@@ -85,7 +84,9 @@ class OrchestratorAgent:
         except Exception as e:
             logger.error("Orchestrator: EDA failed: %s", e)
             return {"error": "EDA failed", "details": str(e)}
-        data_quality = 0.85
+        total_cells = data.size
+        missing_cells = int(data.isnull().sum().sum()) if total_cells else 0
+        data_quality = round(1.0 - (missing_cells / total_cells), 4) if total_cells else 0.0
         if data_quality < self.eda_quality_threshold:
             logger.info("Data quality is low. Suggesting advanced feature engineering.")
             decision["next_action"] = "Perform advanced feature engineering."
@@ -121,7 +122,7 @@ class OrchestratorAgent:
                     insights = generate_ai_insights(
                         eda_summary,
                         model_summary,
-                        model_choice="gpt-4",
+                        model_choice="mistral",
                         force_regenerate=True,
                         enable_cot=True
                     )

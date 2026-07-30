@@ -198,9 +198,14 @@ export default function Home() {
             display="flex"
             flexDirection="column"
           >
-            <Text color="gray.200" fontWeight="bold" mb={2}>
-              Training Metrics
-            </Text>
+            <Flex align="center" justify="space-between" mb={2} wrap="wrap" gap={2}>
+              <Text color="gray.200" fontWeight="bold">
+                Training Metrics
+              </Text>
+              <Badge colorScheme="yellow" variant="subtle" fontSize="0.65rem">
+                Illustrative sample data — not live training output
+              </Badge>
+            </Flex>
             {isMounted ? (
               <Box flex="1">
                 <ResponsiveContainer width="100%" height="80%">
@@ -265,9 +270,14 @@ export default function Home() {
             display="flex"
             flexDirection="column"
           >
-            <Text color="gray.200" fontWeight="bold" mb={2}>
-              Class Distribution
-            </Text>
+            <Flex align="center" justify="space-between" mb={2} wrap="wrap" gap={2}>
+              <Text color="gray.200" fontWeight="bold">
+                Class Distribution
+              </Text>
+              <Badge colorScheme="yellow" variant="subtle" fontSize="0.65rem">
+                Illustrative sample data — not live training output
+              </Badge>
+            </Flex>
             {isMounted ? (
               <Box flex="1">
                 <ResponsiveContainer width="100%" height="80%">

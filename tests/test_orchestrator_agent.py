@@ -1,5 +1,6 @@
 import os
 import sys
+import numpy as np
 import pandas as pd
 import pytest
 from pathlib import Path
@@ -11,7 +12,7 @@ sys.path.append(str(Path(__file__).resolve().parent.parent))
 from backend.app.agents.orchestrator_agent import OrchestratorAgent
 
 # Dummy implementations to override actual calls in tests.
-def dummy_generate_eda(data, target_col, interactive, exclude_date_features, correlation_method, sample_size):
+def dummy_generate_eda(data, interactive, exclude_date_features, correlation_method, sample_size):
     return ("Dummy EDA Report", {"Overview": pd.DataFrame()}, {"dummy_fig": "base64string"})
 
 def dummy_train_and_evaluate_models(**kwargs):
@@ -19,6 +20,13 @@ def dummy_train_and_evaluate_models(**kwargs):
     return {"results": [{"Model": "DummyModel", "R2": 0.7}], "trained_models": {"DummyModel": "dummy_path.pkl"}}
 
 def dummy_generate_ai_insights(eda_summary, model_summary, model_choice, force_regenerate, enable_cot):
+    # The orchestrator must request a real Ollama-resolvable model. "gpt-4" is
+    # never listed by `ollama list`, so requesting it always raised inside
+    # generate_ai_insights before this fix; this assertion pins the corrected
+    # call site so a regression back to "gpt-4" fails this test immediately.
+    assert model_choice == "mistral", (
+        f"Orchestrator must request a real Ollama-resolvable model, got '{model_choice}'."
+    )
     return "Dummy AI Insights"
 
 def dummy_retrieve_context(query, top_k):
@@ -53,6 +61,26 @@ def test_orchestrator_low_model_performance():
     assert "model_results" in decision
     assert decision["next_action"] == "Tune hyperparameters or try alternative models."
     assert "ai_insights" in decision
+
+def test_orchestrator_low_data_quality():
+    # Construct a DataFrame with enough missing values that real completeness
+    # (1 - missing_cells/total_cells) falls below eda_quality_threshold, so the
+    # "Perform advanced feature engineering" branch is genuinely reachable
+    # rather than a permanently-unreachable hardcoded stub.
+    df = pd.DataFrame({
+        "target": [1, 2, 3, 4, 5],
+        "feature1": [10, np.nan, np.nan, 40, np.nan],
+        "feature2": [0.1, np.nan, np.nan, 0.4, np.nan],
+    })
+    # 15 cells total, 6 missing -> completeness = 1 - 6/15 = 0.6, below 0.8.
+
+    agent = OrchestratorAgent()
+    agent.eda_quality_threshold = 0.8
+
+    decision = agent.decide_next_steps(df, target_col="target")
+
+    assert decision["next_action"] == "Perform advanced feature engineering."
+    assert "model_results" not in decision
 
 def test_orchestrator_good_performance():
     # Modify dummy train function to return a high R2.
